@@ -51,15 +51,17 @@
 # Ordering Features
 * ingegredients list passed to restaurant as order (online or SMS code)
 * order is put into the smoothie cue 
-* assuming a smoothie takes a set amount of time to make, pick up time calculated
-* pick up time sent to user via SMS
-
-
-
+* assuming a smoothie takes a set amount of time to make, an est. pick up time is calculated
+* est. pick up time sent to user via SMS
+* when smoothie is ready, SMS is sent to user
 
 # Presention
 * "I'm Rachel", "I'm Aaron", "and I'm David. (We give you) Your smoothie," "you're way", "(and) that's RAD." -lol
 
 # Automation
-* could this whole 'restaurant' really just be a robot?? or one human and lots of automation? 
+* could this whole 'restaurant' really just be a robot?? or one human with lots of automation? like how hard are smoothies to make.....
+* auto blender (bender)[https://twiki.cern.ch/twiki/pub/LHCb/Bender/bender-for-website.jpg]
+
+
+
 
