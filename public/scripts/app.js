@@ -2,9 +2,9 @@ $(() => {
   $.ajax({
     method: "GET",
     url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
+  }).done((smoothies) => {
+    for(smoothie of smoothies) {
+      $("<div>").text(smoothie.description).appendTo($("body"));
     }
   });;
 });

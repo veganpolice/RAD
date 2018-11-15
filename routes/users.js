@@ -8,8 +8,9 @@ module.exports = (knex) => {
   router.get("/", (req, res) => {
     knex
       .select("*")
-      .from("users")
+      .from("smoothies")
       .then((results) => {
+        console.log(results);
         res.json(results);
     });
   });
