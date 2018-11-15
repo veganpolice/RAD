@@ -14,8 +14,12 @@ const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
+
+// Helper functions for querying the database:
+const SmoothieHelpers = require('./lib/smoothie-helpers')(knex);
+
 // Seperated Routes for each Resource
-const usersRoutes = require("./routes/users");
+const smoothieRoutes = require("./routes/smoothies");
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -36,7 +40,7 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
-app.use("/api/users", usersRoutes(knex));
+app.use("/api/smoothies", smoothieRoutes(SmoothieHelpers));
 
 // Home page
 app.get("/", (req, res) => {
