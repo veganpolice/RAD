@@ -1,23 +1,20 @@
 # Routes
 
 ## Create 
-POST /cart                                 /add a smoothie to cart/    U. sees cart quanity increase 
-POST /order                                /submit order/              Server recieves order: cart and user info
+POST /orders/new                           /submit order with form body data, redirect to .orders/:id
 
 ## Read
 GET /                                      /show home page/             
-GET /cart                                  /show shopping cart/        U. sees all itmes in cart
-GET /order                                 /helps user nav to order/   U. can input order ID
-GET /order/:id                             /show confirmation/         U. sees order confirmation
-GET /smoothie                              /show smoothie menu/        U. sees menu
+GET /orders/new                            /show order, populated from user cookie session menu
+GET /orders/:id                            /show confirmation/         U. sees order confirmation
+GET /smoothies                             /show smoothie menu/        U. sees menu
 
 ## Update
-POST /cart                                 /update quantity/           U. sees quanity of smoothie in cart change
+PUT /orders/:id                            /update quantity of items in cart
 
 ## Delete
-GET /cart                                  /remove an item/            U. sees smoothie cart without smoothie
-
+DELETE /orders/:id                         /cancels order
 
 ## ...Stretch
-POST /smoothie                             /add a smoothie/            U. creates a custom smoothie
-GET  /smoothie/:id                         /show smoothie's details/   U. sees a smoothies details
+POST /smoothies                            /add a smoothie/            U. creates a custom smoothie
+GET  /smoothies/:id                         /show smoothie's details/   U. sees a smoothies details

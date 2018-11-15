@@ -2,7 +2,7 @@
 previousLHLprojects/
 
 #mac view data
-.DS-store
+.DS_Store
 
 ## Node gitIgnore https://github.com/github/gitignore/blob/master/Node.gitignore
 # Logs
