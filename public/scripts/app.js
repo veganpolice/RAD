@@ -1,7 +1,7 @@
 $(() => {
   $.ajax({
     method: "GET",
-    url: "/api/users"
+    url: "/api/smoothies"
   }).done((smoothies) => {
     for(smoothie of smoothies) {
       $("<div>").text(smoothie.description).appendTo($("body"));
