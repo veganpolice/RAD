@@ -1,6 +1,6 @@
 body {
   font: 100% "Amatic SC", cursive;
-  background-color: pink;
+  background-color: #a1d0e2;
 }
 
 h1 {
@@ -30,7 +30,7 @@ h3 {
 }
 
 .jumbotron {
-  background-color: pink;
+  background-color: #a1d0e2;
 }
 
 /*# sourceMappingURL=main.css.map */

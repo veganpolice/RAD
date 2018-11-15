@@ -9,26 +9,10 @@
   <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
     crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/styles/layout.css" />
 </head>
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="homepage.html">RAD</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="homepage.html">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="menu-page.html">Menu</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    <% include ./_headerpartial %>
 </header>
 
 <body>
@@ -46,6 +30,7 @@
         <div class="card-body">
           <h5 class="card-title">Extreme C Juice</h5>
           <p class="card-text">Extreme as Vitamin C</p>
+          <button>Add to Cart</button>
         </div>
       </div>
       <div class="card">
@@ -53,6 +38,7 @@
         <div class="card-body">
           <h5 class="card-title">Cloudy Apple Juice</h5>
           <p class="card-text">The freshest apples from Okanagen trees</p>
+          <button>Add to Cart</button>
         </div>
       </div>
       <div class="card">
@@ -60,6 +46,7 @@
         <div class="card-body">
           <h5 class="card-title"> Go Fusion Juice</h5>
           <p class="card-text">If you're feeling like more than one flavor...</p>
+          <button>Add to Cart</button>
         </div>
       </div>
     </div>
@@ -69,6 +56,7 @@
           <div class="card-body">
             <h5 class="card-title">Green Power</h5>
             <p class="card-text">Green as juice</p>
+            <button>Add to Cart</button>
           </div>
         </div>
         <div class="card">
@@ -76,6 +64,7 @@
           <div class="card-body">
             <h5 class="card-title">Karmarama Juice</h5>
             <p class="card-text">Liquid Good Karma</p>
+            <button>Add to Cart</button>
           </div>
         </div>
         <div class="card">
@@ -83,9 +72,11 @@
           <div class="card-body">
             <h5 class="card-title">Radical Action Juice</h5>
             <p class="card-text">RAD Action</p>
+            <button>Add to Cart</button>
           </div>
         </div>
       </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl"

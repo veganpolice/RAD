@@ -1,10 +1,15 @@
+$font-stack:    'Amatic SC', cursive;
+$primary-color: white;
+$second-color: #a1d0e2;
+$third-color: #e9ecef;
+
 body {
-  font: 100% "Amatic SC", cursive;
-  background-color: pink;
+  font: 100% $font-stack;
+  background-color: $third-color;
 }
 
 h1 {
-  font-family: "Amatic SC", cursive;
+  font-family: $font-stack;
 }
 
 .card-img-top {
@@ -16,7 +21,11 @@ h1 {
 
 .card-deck {
   margin: 15px;
-  background-color: #e9ecef;
+  background-color: $third-color;
+}
+
+.card {
+  background-color: $third-color;
 }
 
 p.about-us {
@@ -30,7 +39,6 @@ h3 {
 }
 
 .jumbotron {
-  background-color: pink;
+  background-color: $second-color;
 }
 
-/*# sourceMappingURL=main.css.map */
