@@ -20,6 +20,7 @@ const SmoothieHelpers = require('./lib/smoothie-helpers')(knex);
 const TextEngine = require('./lib/TextEngine')();
 
 // Seperated Routes for each Resource
+const mainRoutes = require("./routes/mainRoutes");
 const smoothieRoutes = require("./routes/smoothies");
 const textRoutes = require("./routes/textRoutes");
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
@@ -40,13 +41,14 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
+
 // Mount all resource routes
+app.use("/", mainRoutes(SmoothieHelpers));
+
 app.use("/api/smoothies", smoothieRoutes(SmoothieHelpers));
 app.use("/api/text", textRoutes(TextEngine));
-// Home page
-app.get("/", (req, res) => {
-  res.render("index");
-});
+
+//TODO catch 404 and other errors, ask david
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
