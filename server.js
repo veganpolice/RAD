@@ -48,18 +48,6 @@ app.use("/", mainRoutes(SmoothieHelpers));
 app.use("/api/smoothies", smoothieRoutes(SmoothieHelpers));
 app.use("/api/text", textRoutes(TextEngine));
 
-//TODO catch 404 and other errors, ask david
-
-//  Menu Page
-app.get('/smoothies', (req, res) => {
-  res.render('smoothies');
-});
-
-app.get('/orders/new', (req, res) => {
-  res.render('order');
-});
-
-
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
