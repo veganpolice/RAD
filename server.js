@@ -44,9 +44,20 @@ app.use(express.static("public"));
 app.use("/api/smoothies", smoothieRoutes(SmoothieHelpers));
 app.use("/api/text", textRoutes(TextEngine));
 // Home page
-app.get("/", (req, res) => {
-  res.render("index");
+app.get('/', (req, res) => {
+  res.render('homepage');
 });
+
+
+//  Menu Page
+app.get('/smoothies', (req, res) => {
+  res.render('smoothies');
+});
+
+app.get('/orders/new', (req, res) => {
+  res.render('order');
+});
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
