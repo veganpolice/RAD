@@ -1,36 +1,46 @@
 body {
   font: 100% "Amatic SC", cursive;
-  background-color: #a1d0e2;
-}
+  background-color: white; }
+  body .body-container {
+    margin: 1em; }
+  body .card-deck {
+    margin: 15px; }
+  body .card {
+    padding: 1em; }
 
 h1 {
-  font-family: "Amatic SC", cursive;
-}
+  font-family: "Amatic SC", cursive; }
 
 .card-img-top {
   width: 5em;
   align-self: center;
   border-top-left-radius: calc(.25rem - 1px);
-  border-top-right-radius: calc(.25rem - 1px);
-}
-
-.card-deck {
-  margin: 15px;
-  background-color: #e9ecef;
-}
+  border-top-right-radius: calc(.25rem - 1px); }
 
 p.about-us {
   padding: 2em;
   margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-h3 {
-  margin-left: 1em;
-}
+  margin-bottom: 1rem; }
 
 .jumbotron {
-  background-color: #a1d0e2;
-}
+  background-color: #a1d0e2; }
 
-/*# sourceMappingURL=main.css.map */
+.add-item-btn {
+  width: 100%;
+  border: 1px;
+  padding: .5em; }
+
+.item-image {
+  width: 5em; }
+
+.row {
+  margin: 0.5em; }
+
+.price {
+  margin-left: 2em; }
+
+.col-xs-12 {
+  border: 1px solid lightgrey;
+  width: 100%; }
+
+/* Run npm start for sass --watch (automatic updating and compiling to CSS file) */
