@@ -1,7 +1,7 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('smoothies', function (table) {
-    table.increments().primary();
+    table.increments('id').primary();
     table.text('description');
     table.integer('price_cents');
     table.string('picture_url');
