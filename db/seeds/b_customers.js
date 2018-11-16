@@ -13,14 +13,14 @@ exports.seed = function(knex, Promise) {
           id: 2,
           first_name: 'Rachel',
           last_name: 'Wong',
-          phone: '+12345678910',
+          phone: '+12345678911',
           email: 'rachel@rachel.com',
         }),
         knex('customers').insert({
           id: 3,
           first_name: 'Aaron',
           last_name: 'Rosenberg',
-          phone: '+12345678910',
+          phone: '+12345678912',
           email: 'aaron@aaron.com',
         }),
       ]);

@@ -2,21 +2,23 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.ENV || "development";
+const express = require("express");
+const bodyParser = require("body-parser");
+const sass = require("node-sass-middleware");
+const app = express();
 
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
-const morgan      = require('morgan');
-const knexLogger  = require('knex-logger');
+const knexConfig = require("./knexfile");
+const knex = require("knex")(knexConfig[ENV]);
+const morgan = require('morgan');
+const knexLogger = require('knex-logger');
 
 
-// Helper functions for querying the database:
-const smoothieHelpers = require('./lib/smoothie-helpers')(knex);
+// Helper functions for querying the database.
+const SmoothieHelpers = require('./lib/smoothie-helpers')(knex);
+const CustomerHelpers = require('./lib/customer-helpers')(knex);
+const OrderHelpers = require('./lib/order-helpers')(knex, CustomerHelpers)
 const TextEngine = require('./lib/TextEngine')();
 
 // Seperated Routes for each Resource
@@ -32,7 +34,9 @@ app.use(morgan('dev'));
 app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
@@ -41,11 +45,10 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
-
 // Mount all resource routes
-app.use("/", mainRoutes(smoothieHelpers));
+app.use("/", mainRoutes(SmoothieHelpers));
 
-app.use("/api/smoothies", smoothieRoutes(smoothieHelpers));
+app.use("/api/smoothies", smoothieRoutes(SmoothieHelpers));
 app.use("/api/text", textRoutes(TextEngine));
 
 app.listen(PORT, () => {
