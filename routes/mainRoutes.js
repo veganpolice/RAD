@@ -4,7 +4,7 @@ const express = require('express');
 
 const router = express.Router();
 
-module.exports = (SmoothieHelpers) => {
+module.exports = (smoothieHelpers) => {
 
   // Home page
 router.get("/", (req, res) => {
@@ -13,13 +13,26 @@ router.get("/", (req, res) => {
   
   //user goes to menu
   router.get("/smoothies/", (req, res) => {
-    res.render("smoothies");
+    //grab smoothies data and pass to anon callback
+    smoothieHelpers.getSmoothies( (err, result) => {
+      //on result, store smoothie data in template vars as smoothies
+      const templateVars = {
+        smoothies: result
+      }
+      console.log(templateVars);
+      //renter smoothies and pass in template vars
+      res.render("smoothies", templateVars)
+    })
   });
   
   //user goes to shopping cart
   router.get("/orders/new/", (req, res) => {
     //cart form is populated from cookie
-    res.render("cart");
+    const cart = 'cookie'//grab cart data from cookie
+    const templateVars = {
+      cart
+    }
+    res.render("cart", templateVars);
   });
   
   //user submits thier order
@@ -27,11 +40,6 @@ router.get("/", (req, res) => {
     //sends order to db
     //grabs order id
     //redirects to /orders/:id
-  });
-  
-  //user sees their order page and status
-  router.get("/orders/:id/", (req, res) => {
-    res.render("order");
   });
   
   //user cancels an order

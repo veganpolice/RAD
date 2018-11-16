@@ -16,7 +16,7 @@ const knexLogger  = require('knex-logger');
 
 
 // Helper functions for querying the database:
-const SmoothieHelpers = require('./lib/smoothie-helpers')(knex);
+const smoothieHelpers = require('./lib/smoothie-helpers')(knex);
 const TextEngine = require('./lib/TextEngine')();
 
 // Seperated Routes for each Resource
@@ -43,9 +43,9 @@ app.use(express.static("public"));
 
 
 // Mount all resource routes
-app.use("/", mainRoutes(SmoothieHelpers));
+app.use("/", mainRoutes(smoothieHelpers));
 
-app.use("/api/smoothies", smoothieRoutes(SmoothieHelpers));
+app.use("/api/smoothies", smoothieRoutes(smoothieHelpers));
 app.use("/api/text", textRoutes(TextEngine));
 
 app.listen(PORT, () => {
