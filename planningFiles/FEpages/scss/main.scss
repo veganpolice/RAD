@@ -70,5 +70,13 @@ p.about-us {
     width: 100%;
 }
 
+.order-confirmation-page {
+  background-color: $second-color;
+  padding: 5em 0em;
+  .confirmation-info {
+    text-align: center;
+  }
+}
+
 /* Run npm start for sass --watch (automatic updating and compiling to CSS file)
 must run this in /vagrant/midterm-project/RAD/planningFiles/FEpages */
