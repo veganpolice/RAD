@@ -4,7 +4,7 @@ const express = require('express');
 
 const router = express.Router();
 
-module.exports = (SmoothieHelpers) => {
+module.exports = (smoothieHelpers) => {
 
   // Home page
 router.get("/", (req, res) => {
@@ -13,7 +13,18 @@ router.get("/", (req, res) => {
   
   //user goes to menu
   router.get("/smoothies/", (req, res) => {
-    res.render("smoothies");
+    //grab smoothies data and store as variable
+    smoothieHelpers.getSmoothies( (err, result) => {
+
+      const templateVars = {
+        smoothies: result
+      }
+
+      console.log(templateVars);
+      res.render("smoothies", templateVars)
+      
+    })
+    
   });
   
   //user goes to shopping cart
