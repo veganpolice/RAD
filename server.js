@@ -47,15 +47,6 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
-app.get('/123', (req, res) => {
-  OrderHelpers.orderItem('Aaron', '+12345378911', {}, (err, response) => {
-    if (err) {
-      console.log(err);
-    }
-    console.log(response);
-    res.send('done');
-  });
-});
 app.use(cookieParser())
 app.use("/", mainRoutes(SmoothieHelpers));
 
