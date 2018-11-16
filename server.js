@@ -2,18 +2,18 @@
 
 require('dotenv').config();
 
-const PORT        = process.env.PORT || 8080;
-const ENV         = process.env.ENV || "development";
-const express     = require("express");
-const bodyParser  = require("body-parser");
-const sass        = require("node-sass-middleware");
-const app         = express();
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.ENV || "development";
+const express = require("express");
+const bodyParser = require("body-parser");
+const sass = require("node-sass-middleware");
+const app = express();
 
 const cookieParser = require('cookie-parser')
-const knexConfig  = require("./knexfile");
-const knex        = require("knex")(knexConfig[ENV]);
-const morgan      = require('morgan');
-const knexLogger  = require('knex-logger');
+const knexConfig = require("./knexfile");
+const knex = require("knex")(knexConfig[ENV]);
+const morgan = require('morgan');
+const knexLogger = require('knex-logger');
 
 
 // Helper functions for querying the database:
@@ -47,6 +47,15 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 
 // Mount all resource routes
+app.get('/123', (req, res) => {
+  OrderHelpers.orderItem('Aaron', '+12345378911', {}, (err, response) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log(response);
+    res.send('done');
+  });
+});
 app.use(cookieParser())
 app.use("/", mainRoutes(SmoothieHelpers));
 
