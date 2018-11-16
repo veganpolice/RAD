@@ -23,6 +23,10 @@ h1 {
   font-family: $font-stack;
 }
 
+.card:hover {
+  opacity: 0.7;
+}
+
 .card-img-top {
   width: 5em;
   align-self: center;
@@ -44,6 +48,9 @@ p.about-us {
   width: 100%;
   border: 1px;
   padding: .5em;
+  bottom: 0;
+  position: absolute;
+  margin-left: -36px;
 }
 
 .item-image {
@@ -63,4 +70,5 @@ p.about-us {
     width: 100%;
 }
 
-/* Run npm start for sass --watch (automatic updating and compiling to CSS file) */
+/* Run npm start for sass --watch (automatic updating and compiling to CSS file)
+must run this in /vagrant/midterm-project/RAD/planningFiles/FEpages */
