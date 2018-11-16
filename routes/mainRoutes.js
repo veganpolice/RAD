@@ -7,9 +7,9 @@ const router = express.Router();
 module.exports = (smoothieHelpers) => {
 
   // Home page
-router.get("/", (req, res) => {
-    res.render("index");
-  });
+  router.get("/", (req, res) => {
+      res.render("index");
+    });
   
   //user goes to menu
   router.get("/smoothies/", (req, res) => {
