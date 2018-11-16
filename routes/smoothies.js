@@ -16,8 +16,8 @@ module.exports = (smoothieHelpers) => {
 
   //add a smoothie to cart (cookie)
   router.post('/addToCart', (req, res) => {
-    console.log('/addToCart route triggered');
     res.cookie('cart', {[req.body.id]: 1} )
+    res.send({result:'True'});
     })
 
   return router;
