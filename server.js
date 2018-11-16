@@ -9,6 +9,7 @@ const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
 
+const cookieParser = require('cookie-parser')
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
@@ -41,10 +42,10 @@ app.use("/styles", sass({
 }));
 app.use(express.static("public"));
 
+app.use(cookieParser())
 
 // Mount all resource routes
 app.use("/", mainRoutes(smoothieHelpers));
-
 app.use("/api/smoothies", smoothieRoutes(smoothieHelpers));
 app.use("/api/text", textRoutes(TextEngine));
 
