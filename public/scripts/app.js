@@ -10,6 +10,7 @@ $(() => {
 
   $('button').click( () => {
    console.log('button clicked');
+   //populating body of request with smoothie id from html data attribute
     $.ajax({
     method: "POST",
     url: "/api/smoothies/addToCart",

@@ -16,11 +16,28 @@ module.exports = (smoothieHelpers) => {
 
   //add a smoothie to cart (cookie)
   router.post('/addToCart', (req, res) => {
-
-    // button needs a name which will be the smoothie type
-    const id = req.body. 
-
-    res.cookie('cart', {id: qty} )
+    
+    // button needs html data attb. which will be the smoothie type
+    const smoothieId = 1 //placeholder, needs to be grabbed from html data attribute
+    
+    
+    //retrieve cookie from req head
+    let cookie = req.cookies
+    let cookieCart = cookie.cart
+    console.log('previous cookie value:', cookie.cart);
+    
+    //check if cookie exists
+    if (cookie.cart) {
+      console.log('cookie: cart exists')
+      console.log('previous quntity of smoothie 1', cookie.cart[smoothieId])
+      cookie.cart[smoothieId] ? cookie.cart[smoothieId] += 1 : cookie.cart[smoothieId] = 1;
+      console.log('new quntity of smoothie 1', cookie.cart[smoothieId]);
+    } else {
+      cookieCart = {[smoothieId]: 1};
+      cookie.cart = cookieCart
+    }
+    console.log('new cookie value:', cookie);
+    res.cookie('cart', cookie.cart);
     res.send({result:'True'});
     })
 
