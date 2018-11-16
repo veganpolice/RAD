@@ -2,14 +2,7 @@
 <html>
 
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>RAD Smoothies</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" media="screen" href="/styles/layout.css" />
+  <% include ./_headpartial %>
 </head>
 <header>
     <% include ./_headerpartial %>
@@ -22,68 +15,60 @@
       <p class="lead">Welcome to the raddest smoothies in Vancouver</p>
     </div>
   </div>
-  
-  <h3>Menu</h3>
-    <div class="card-deck">
-      <div class="card">
-        <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Extreme C.png" alt="Extreme C">
-        <div class="card-body">
-          <h5 class="card-title">Extreme C Juice</h5>
-          <p class="card-text">Extreme as Vitamin C</p>
-          <button>Add to Cart</button>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Cloudy Apple.png" alt="Cloudy Apple">
-        <div class="card-body">
-          <h5 class="card-title">Cloudy Apple Juice</h5>
-          <p class="card-text">The freshest apples from Okanagen trees</p>
-          <button>Add to Cart</button>
-        </div>
-      </div>
-      <div class="card">
-        <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Go Fusion.png" alt="Go Fusion">
-        <div class="card-body">
-          <h5 class="card-title"> Go Fusion Juice</h5>
-          <p class="card-text">If you're feeling like more than one flavor...</p>
-          <button>Add to Cart</button>
-        </div>
-      </div>
-    </div>
-    <div class="card-deck">
+  <section class="body-container">
+    <h3>Menu</h3>
+      <div class="card-deck">
         <div class="card">
-          <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Green Power.png" alt="Extreme C">
+          <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Extreme C.png" alt="Extreme C">
           <div class="card-body">
-            <h5 class="card-title">Green Power</h5>
-            <p class="card-text">Green as juice</p>
-            <button>Add to Cart</button>
+            <h5 class="card-title">Extreme C Juice</h5>
+            <p class="card-text">Extreme as Vitamin C</p>
+            <button class="add-item-btn">Add to Cart</button>
           </div>
         </div>
         <div class="card">
-          <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Karmarama.png" alt="Cloudy Apple">
+          <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Cloudy Apple.png" alt="Cloudy Apple">
           <div class="card-body">
-            <h5 class="card-title">Karmarama Juice</h5>
-            <p class="card-text">Liquid Good Karma</p>
-            <button>Add to Cart</button>
+            <h5 class="card-title">Cloudy Apple Juice</h5>
+            <p class="card-text">The freshest apples from Okanagen trees</p>
+            <button class="add-item-btn">Add to Cart</button>
           </div>
         </div>
         <div class="card">
-          <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Radical Action.png" alt="Go Fusion">
+          <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Go Fusion.png" alt="Go Fusion">
           <div class="card-body">
-            <h5 class="card-title">Radical Action Juice</h5>
-            <p class="card-text">RAD Action</p>
-            <button>Add to Cart</button>
+            <h5 class="card-title"> Go Fusion Juice</h5>
+            <p class="card-text">If you're feeling like more than one flavor...</p>
+            <button class="add-item-btn">Add to Cart</button>
           </div>
         </div>
       </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> 
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js" integrity="sha384-pjaaA8dDz/5BgdFUPX6M/9SUZv4d12SUPF0axWc+VRZkx5xU3daN+lYb49+Ax+Tl"
-    crossorigin="anonymous"></script>
-  <footer class="container">
-    <p>Contact Us</p>
-  </footer>
-</body>
+      <div class="card-deck">
+          <div class="card">
+            <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Green Power.png" alt="Extreme C">
+            <div class="card-body">
+              <h5 class="card-title">Green Power</h5>
+              <p class="card-text">Green as juice</p>
+              <button class="add-item-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Karmarama.png" alt="Cloudy Apple">
+            <div class="card-body">
+              <h5 class="card-title">Karmarama Juice</h5>
+              <p class="card-text">Liquid Good Karma</p>
+              <button class="add-item-btn">Add to Cart</button>
+            </div>
+          </div>
+          <div class="card">
+            <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Radical Action.png" alt="Go Fusion">
+            <div class="card-body">
+              <h5 class="card-title">Radical Action Juice</h5>
+              <p class="card-text">RAD Action</p>
+              <button class="add-item-btn">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+  </section>
 
-</html>
+<% include ./_footerpartial %>
