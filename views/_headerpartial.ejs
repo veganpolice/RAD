@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #a1d0e2">
     <a class="navbar-brand" href="/">RAD</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -12,6 +12,11 @@
       </div>
     </div>
   </nav>
+    <% if (locals.error) { %>
+    <div class="alert alert-warning" role="alert">
+      <strong>Warning!</strong> <%= error.message %>
+    </div>
+    <% } %>
 </header>
 
 <!-- <div class="jumbotron jumbotron-fluid">
@@ -20,3 +25,33 @@
       <p class="lead">Welcome to the raddest smoothies in Vancouver</p>
     </div>
   </div> -->
+
+
+  <!--
+<header class= "Header Header--top">
+  <div class="Header-inner Header-inner--top" data-nc-group="top">
+    <div data-nc-container="top-left">
+      <<nav class="Header-nav Header-nav--primary" data-nc-element="primary-nav" data-content-field="navigation">
+        <div class="Header-nav-inner">
+          <a href="/" class="Header-nav-item Header-nav-item--active" data-test="template-nav">Home</a>
+          <a href="/menu" class="Header-nav-item" data-test="template-nav">Menu</a>
+        </div>
+      </nav>
+    </div>
+    <div data-nc-container="top-center">
+      <a href="/" class="Header-branding" data-nc-element="branding" data-content-field="site-title">RAD Smoothies</a>
+    </div>
+    <div data-nc-container="top-right">
+      <a href="/cart" class="Cart sqs-custom-cart sqs-template-integrated-shopping-cart sqs-cart-initialized" data-nc-element="cart" data-test="continue-to-cart">
+        <span class="Cart-inner">
+          <span class="Cart-label">Cart</span>
+            <svg class="Icon Icon--bag-alt" viewBox="0 0 28 28">
+              <use class="use--odd" xlink:href="/assets/ui-icons.svg#bag-icon-alt--odd">
+            </svg>
+        </span>
+      </a>
+    </div>
+  </div>
+
+</header>
+ -->

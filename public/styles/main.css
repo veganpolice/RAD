@@ -11,6 +11,9 @@ body {
 h1 {
   font-family: "Amatic SC", cursive; }
 
+.card:hover {
+  opacity: 0.7; }
+
 .card-img-top {
   width: 5em;
   align-self: center;
@@ -28,7 +31,10 @@ p.about-us {
 .add-item-btn {
   width: 100%;
   border: 1px;
-  padding: .5em; }
+  padding: .5em;
+  bottom: 0;
+  position: absolute;
+  margin-left: -36px; }
 
 .item-image {
   width: 5em; }
@@ -43,4 +49,11 @@ p.about-us {
   border: 1px solid lightgrey;
   width: 100%; }
 
-/* Run npm start for sass --watch (automatic updating and compiling to CSS file) */
+.order-confirmation-page {
+  background-color: #a1d0e2;
+  padding: 5em 0em; }
+  .order-confirmation-page .confirmation-info {
+    text-align: center; }
+
+/* Run npm start for sass --watch (automatic updating and compiling to CSS file)
+must run this in /vagrant/midterm-project/RAD/planningFiles/FEpages */
