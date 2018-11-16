@@ -1,11 +1,22 @@
-$font-stack:    'Amatic SC', cursive;
-$primary-color: white;
-$second-color: #a1d0e2;
-$third-color: #e9ecef;
+$font-stack: 'Amatic SC', cursive;
+$second-color: #a1d0e2; // light blue
+$third-color: #e9ecef; // light grey
+$default-color: white;
+$test-color: red;
 
 body {
   font: 100% $font-stack;
-  background-color: $third-color;
+  background-color: $default-color;
+
+  .body-container {
+    margin: 1em;
+  }
+  .card-deck {
+    margin: 15px;
+  }
+  .card {
+    padding: 1em;
+  }
 }
 
 h1 {
@@ -19,26 +30,37 @@ h1 {
   border-top-right-radius: calc(.25rem - 1px);
 }
 
-.card-deck {
-  margin: 15px;
-  background-color: $third-color;
-}
-
-.card {
-  background-color: $third-color;
-}
-
 p.about-us {
   padding: 2em;
   margin-top: 0;
   margin-bottom: 1rem;
 }
 
-h3 {
-  margin-left: 1em;
-}
-
 .jumbotron {
   background-color: $second-color;
 }
 
+.add-item-btn {
+  width: 100%;
+  border: 1px;
+  padding: .5em;
+}
+
+.item-image {
+  width: 5em;
+}
+
+.row {
+  margin: 0.5em;
+}
+
+.price {
+  margin-left: 2em;
+}
+
+.col-xs-12 {
+    border: 1px solid lightgrey;
+    width: 100%;
+}
+
+/* Run npm start for sass --watch (automatic updating and compiling to CSS file) */
