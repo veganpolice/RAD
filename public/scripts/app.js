@@ -17,3 +17,15 @@ $(() => {
 
   });
 });
+
+      //on cart submit
+//FUNCTION createOrderObject
+//-declaire object
+//-assign form values to object keys
+
+      //on car page load
+//FUNCTION fillInCartForm
+//on page load
+//-parse cookie as json
+//-for each key, fill in form data
+

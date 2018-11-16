@@ -16,7 +16,11 @@ module.exports = (smoothieHelpers) => {
 
   //add a smoothie to cart (cookie)
   router.post('/addToCart', (req, res) => {
-    res.cookie('cart', {[req.body.id]: 1} )
+
+    // button needs a name which will be the smoothie type
+    const id = req.body. 
+
+    res.cookie('cart', {id: qty} )
     res.send({result:'True'});
     })
 
