@@ -82,7 +82,7 @@ $(() => {
     }
     const formatedPrice = new Intl.NumberFormat('en-CA', {
       style: 'currency',
-      currency: 'CAD'
+      currency: 'USD'
     }).format(totalPrice);
     $('span.total-price').text(formatedPrice);
   }
