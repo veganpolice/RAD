@@ -13,8 +13,8 @@ const updateCookie = (cookie, smoothieId, updateValue) => {
     };
     cookie.cart = cookieCart;
   }
-  if (cookie.cart[smoothieId] < 0) {
-    cookie.cart[smoothieId] = 0;
+  if (cookie.cart[smoothieId] <= 0) {
+    delete cookie.cart[smoothieId];
   }
   return cookie;
 };
@@ -23,21 +23,32 @@ module.exports = (smoothieHelpers) => {
 
   router.post('/addToCart', (req, res) => {
     const {
-      smoothieId
+      smoothieId,
     } = req.body;
     const updatedCookie = updateCookie(req.cookies, smoothieId, 1);
     res.cookie('cart', updatedCookie.cart);
-    res.json(updatedCookie.cart[smoothieId]);
+
+    if (!updatedCookie.cart[smoothieId]) {
+      console.log('no more in cart');
+      res.json(0);
+    } else {
+      res.json(updatedCookie.cart[smoothieId]);
+    }
   });
 
   router.post('/rmvFromCart', (req, res) => {
     const {
-      smoothieId
+      smoothieId,
     } = req.body;
     const updatedCookie = updateCookie(req.cookies, smoothieId, -1);
     res.cookie('cart', updatedCookie.cart);
-    res.json(updatedCookie.cart[smoothieId]);
-  })
+    if (!updatedCookie.cart[smoothieId]) {
+      console.log('no more in cart');
+      res.json(0);
+    } else {
+      res.json(updatedCookie.cart[smoothieId]);
+    }
+  });
 
   return router;
 };

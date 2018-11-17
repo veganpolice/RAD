@@ -20,7 +20,7 @@ $(() => {
       },
     }).then((results) => {
       // We're going to update some fields!
-      console.log(results);
+      $(event.target.parentElement).children('.smoothie-quantity').text(results);
     });
   });
 
@@ -28,13 +28,13 @@ $(() => {
     const smoothieId = $(event.target).data('smoothieid');
     $.ajax({
       method: "POST",
-      url: "/api/smoothies/addToCart",
+      url: "/api/smoothies/rmvFromCart",
       data: {
         smoothieId
       },
     }).then((results) => {
       // We're going to update some fields!
-      console.log(results);
+      $(event.target.parentElement).children('.smoothie-quantity').text(results);
     });
   });
 
