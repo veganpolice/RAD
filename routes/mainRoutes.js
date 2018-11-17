@@ -68,7 +68,9 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
         });
       }
       if (response[0]) {
-        res.render("order", response[0]);
+        console.log(response[0]);
+        const order = response[0];
+        res.render("order", order);
       } else {
         res.render("cart", {
           error: {
@@ -81,6 +83,7 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
 
 
   router.get("/orders", (req, res) => {
+
     res.redirect('/orders/new');
   });
 
