@@ -108,7 +108,7 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
           };
         } else {
           templateVars['error'] = {
-            message: `We need your number & phone number to complete your order.`
+            message: `We need your name & phone number to complete your order.`
           };
           templateVars.smoothies = result;
         }
