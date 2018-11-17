@@ -56,7 +56,8 @@ p.about-us {
   margin-bottom: 1rem; }
 
 .about-us {
-  text-align: center; }
+  text-align: center;
+  padding-bottom: 1em; }
 
 .card:hover {
   opacity: 0.7; }
