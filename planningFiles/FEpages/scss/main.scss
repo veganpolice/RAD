@@ -11,11 +11,20 @@ $test-color: red;
 
 .title {
   color: black;
+  // font-weight: bold;
+  font-size: 2em;
+}
+
+@media all and (max-width: 600px) {
+  .title {
+    font-size: 1em;
+  }
 }
 
 body {
   font: 100% $font-stack;
   background-color: $default-color; 
+  font-size: 1em;
 
   .body-container {
     margin: 1em;
@@ -30,10 +39,23 @@ body {
 
 .jumbotron {
   background-color: $second-color;
+  padding: 2rem;
+}
+
+.nav a {
+  font-size: 1.5em;
+  color: black;
+  margin: 0em 1em;
+}
+
+.nav a:hover {
+  color: black;
+  text-decoration: none;
 }
 
 p.lead {
   text-align: center;
+  font-size: 2em;
 }
 
 h1 {
@@ -81,6 +103,7 @@ p.about-us {
 .cart-labels {
   border-bottom: 0.5px solid $third-color;
   padding: 0.5em 0em;
+  font-size: 1em;
 }
 
 .price-label {
@@ -92,8 +115,9 @@ p.about-us {
   float: right;
   margin-top: 2em;
 }
+
 .qty-label {
-  margin-left:10em;
+  margin:0em 5em;
 }
 
 .item-label {
@@ -130,6 +154,19 @@ img.item-image {
   background: $third-color;
   border-radius: 0px;
 }
+
+.total-table {
+  text-align: right;
+  margin-right: 0.5em;
+  .total {
+    font-weight: bold;
+    padding: 0.5em 0em;
+  }
+  // .subtotal {
+  //   padding: 0.2em 0em;
+  // }
+}
+
 //------------------------------------------------
 // ORDER CONFIRMATION PAGE
 //------------------------------------------------
@@ -148,6 +185,3 @@ img.item-image {
     padding: 1em 0em;
   }
 }
-
-/* Run npm start for sass --watch (automatic updating and compiling to CSS file)
-must run this in /vagrant/midterm-project/RAD/planningFiles/FEpages */
