@@ -3,11 +3,17 @@
   color: black; }
 
 .title {
-  color: black; }
+  color: black;
+  font-size: 2em; }
+
+@media all and (max-width: 600px) {
+  .title {
+    font-size: 1em; } }
 
 body {
   font: 100% "Amatic SC", cursive;
-  background-color: white; }
+  background-color: white;
+  font-size: 1em; }
   body .body-container {
     margin: 1em; }
   body .card-deck {
@@ -16,10 +22,21 @@ body {
     padding: 1em; }
 
 .jumbotron {
-  background-color: #a1d0e2; }
+  background-color: #a1d0e2;
+  padding: 2rem; }
+
+.nav a {
+  font-size: 1.5em;
+  color: black;
+  margin: 0em 1em; }
+
+.nav a:hover {
+  color: black;
+  text-decoration: none; }
 
 p.lead {
-  text-align: center; }
+  text-align: center;
+  font-size: 2em; }
 
 h1 {
   font-family: "Amatic SC", cursive;
@@ -54,7 +71,8 @@ p.about-us {
 
 .cart-labels {
   border-bottom: 0.5px solid #e9ecef;
-  padding: 0.5em 0em; }
+  padding: 0.5em 0em;
+  font-size: 1em; }
 
 .price-label {
   float: right;
@@ -65,7 +83,7 @@ p.about-us {
   margin-top: 2em; }
 
 .qty-label {
-  margin-left: 10em; }
+  margin: 0em 5em; }
 
 .item-label {
   float: left;
@@ -95,6 +113,13 @@ img.item-image {
   background: #e9ecef;
   border-radius: 0px; }
 
+.total-table {
+  text-align: right;
+  margin-right: 0.5em; }
+  .total-table .total {
+    font-weight: bold;
+    padding: 0.5em 0em; }
+
 .order-confirmation-page {
   background-color: #a1d0e2;
   padding: 5em 0em; }
@@ -105,6 +130,3 @@ img.item-image {
     font-size: 4em; }
   .order-confirmation-page h3.confirmation-info {
     padding: 1em 0em; }
-
-/* Run npm start for sass --watch (automatic updating and compiling to CSS file)
-must run this in /vagrant/midterm-project/RAD/planningFiles/FEpages */

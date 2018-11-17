@@ -31,7 +31,7 @@ const textRoutes = require("./routes/textRoutes");
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 
-// Log knex SQL queries to STDOUT as well, you wonderful person
+// Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
 
 app.set("view engine", "ejs");
