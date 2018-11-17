@@ -35,20 +35,24 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
   router.get("/orders/new/", (req, res) => {
 
     const cookieCart = req.cookies.cart;
-    let smoothieArray = [];
-    for (const smoothieType in cookieCart) {
-      smoothieArray.push(parseInt(smoothieType));
+    if (cookieCart) {
+      let smoothieArray = [];
+      for (const smoothieType in cookieCart) {
+        smoothieArray.push(parseInt(smoothieType));
+      }
+      SmoothieHelpers.getSmoothieByArrayOfId(smoothieArray, (err, result) => {
+        const templateVars = {
+          smoothies: result
+        }
+        //catchs errors and passes as object in templateVars
+        if (err) {
+          templateVars.error.message = err;
+        }
+        res.render("cart", templateVars);
+      })
+    } else {
+      res.render('cart');
     }
-    SmoothieHelpers.getSmoothieByArrayOfId(smoothieArray, (err, result) => {
-      const templateVars = {
-        smoothies: result
-      }
-      //catchs errors and passes as object in templateVars
-      if (err) {
-        templateVars.error.message = err;
-      }
-      res.render("cart", templateVars);
-    })
   });
 
   router.get("/orders/:id/", (req, res) => {
