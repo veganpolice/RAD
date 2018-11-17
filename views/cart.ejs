@@ -10,13 +10,18 @@
     <div class="container-fluid">
       <div class="page-header">
         <h1>Shopping Cart</h1>
+        <div class="cart-labels">
+          <span class="item-label">ITEM</span>
+          <span class="qty-label">QTY</span>
+          <span class="price-label">PRICE</span>
+        </div>
           <div class="row">
             <div class="col-xs-12">
               <img class="item-image" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Extreme C.png" class="rounded float-left" alt="Extreme C">
               <span class="item-row">
                 <span class='description'> Exteme C Juice</span>
-                <span class='price'> $7.50 </span>
                 <span class="quantity"><button> - </button> 1 <button>+</button></span>
+                <span class='price'> $7.50 </span>
               </span>
           </div><!-- end .row 1-->
         </div>
@@ -25,8 +30,8 @@
               <img class="item-image" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Go Fusion.png" class="rounded float-left" alt="Go Fusion">
               <span class="item-row">
                 <span class='description'> Go Fusion Juice</span>
-                <span class='price'> $7.50 </span>
                 <span class="quantity"><button> - </button> 1 <button>+</button></span>
+                <span class='price'> $7.50 </span>
               </span>
           </div><!-- end .row 2 -->
         </div>
@@ -35,16 +40,44 @@
               <img class="item-image" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Go Fusion.png" class="rounded float-left" alt="Go Fusion">
               <span class="item-row">
                 <span class='description'> Go Fusion Juice</span>
-                <span class='price'> $7.50 </span>
                 <span class="quantity"><button> - </button> 1 <button>+</button></span>
+                <span class='price'> $7.50 </span>
               </span>
           </div><!-- end .row 2 -->
         </div>
       </div> <!--end .page-header-->
     </div><!-- end .container-fluid -->
-    <button type="button" class="btn fixed-bottom btn-lg btn-block">Checkout</button>
+    <button type="button" class="checkout-btn btn fixed-bottom btn-lg btn-block" data-toggle="modal" data-target="#exampleModalCenter" >Checkout</button>
   </main>
 
-<% include ./_footerpartial %>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Enter Your Details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label">Name</label>
+              <input type="text" class="form-control" id="recipient-name">
+            </div>
+            <div class="form-group">
+              <label for="recipient-phone" class="col-form-label">Contact</label>
+              <input type="text" class="form-control" id="recipient-phone" placeholder="+1 ">
+            </div>
+          </form>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick=" location.href='/orders/1'">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-<!-- https://www.practicalecommerce.com/Build-a-Responsive-Mobile-first-Cart-Page-with-Bootstrap -->
+<% include ./_footerpartial %>
