@@ -29,6 +29,7 @@ $(() => {
         style: 'currency',
         currency: 'CAD'
       }).format(newPrice));
+      calculateTotalPrice();
     });
   });
 
@@ -59,6 +60,7 @@ $(() => {
           currency: 'CAD'
         }).format(newPrice));
       }
+      calculateTotalPrice();
     });
   });
 
@@ -70,6 +72,21 @@ $(() => {
       url: "/orders"
     })
   });
+
+
+  const calculateTotalPrice = () => {
+    const prices = $('span.price');
+    let totalPrice = 0;
+    for (let i = 0; i < prices.length; i++) {
+      totalPrice += parseFloat($(prices[i]).text().match(/[\d\.]+/));
+    }
+    const formatedPrice = new Intl.NumberFormat('en-CA', {
+      style: 'currency',
+      currency: 'CAD'
+    }).format(totalPrice);
+    $('span.total-price').text(formatedPrice);
+  }
+  calculateTotalPrice();
 
 });
 
