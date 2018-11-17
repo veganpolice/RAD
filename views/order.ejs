@@ -4,9 +4,35 @@
     <% include ./_headpartial %>
   </head>
   <body class="order-confirmation-page">
-        <h1 class="confirmation-info">RAD Order #<%= id%></h1>
-        <h2 class="confirmation-info">is <% if (confirmed) { %> confirmed</h2>
-        <p class="confirmation-info">Pickup your smoothies at <%= ready_at%></p>
-        <% } else { %> pending</h2>
-        <p class="confirmation-info">Please wait while we review your order. You will revieve a sms when your order is confirmed.</p>
-        <% } %>
+        <h1 class="confirmation-info">Your RAD Order</h1>
+        <h2 class="confirmation-info">status: <% if (order.confirmed) { %> <font color='green'>confirmed</font></h2>
+        <p class="confirmation-info">Pickup your smoothies at <%= order.ready_at%></p>
+          <% } else { %> <font color='orange'>pending</font></h2>
+          <p class="confirmation-info">Please wait while we review your order. You will revieve a sms when your order is confirmed.</p>
+          <% } %>
+       
+        <h5 class="confirmation-info">Order # <%= order.id%></h5>
+        <% smoothies.forEach((smoothie) => { %>
+          <% [smoothie].quantity = 1 %>
+          <div class="row">
+            <div class="col-xs-12">
+              <span class="quantity"><span class="smoothie-quantity">
+                  <%= [smoothie].quantity %></span></span>
+                <span class='price'><%= new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'USD' }).format([smoothie].quantity * (smoothie.price_cents / 100))%></span>
+            </div>
+            <div class='description'> <%=smoothie.description %></div>
+          </div>
+          <% });%>
+          
+          <div class="total-table"><div class="total"><span>Total: </span><span class="total-price">$0.00</span></div></div>
+  
+      
+           
+        
+          
+            <!-- <div class="subtotal"><span>Subtotal:</span><span>$0.00</span></div>
+            <div class="subtotal"><span>Tax:</span><span>(price x 1.12)- subtotal</span></div> -->
+            
+          
+        </div>
+      </div>
