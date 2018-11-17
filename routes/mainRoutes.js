@@ -4,18 +4,18 @@ const express = require('express');
 
 const router = express.Router();
 
-module.exports = (smoothieHelpers) => {
+module.exports = (SmoothieHelpers, OrderHelpers) => {
 
   // Home page
   router.get("/", (req, res) => {
-      res.render("index");
-    });
+    res.render("index");
+  });
 
   //user goes to menu
   router.get("/smoothies/", (req, res) => {
-    
+
     //grab smoothies data and pass to anon callback
-    smoothieHelpers.getSmoothies( (err, result) => {
+    SmoothieHelpers.getSmoothies((err, result) => {
       //on result, store smoothie data in template vars as smoothies
       const templateVars = {
         smoothies: result,
@@ -36,10 +36,10 @@ module.exports = (smoothieHelpers) => {
 
     const cookieCart = req.cookies.cart;
     let smoothieArray = [];
-    for(const smoothieType in cookieCart) {
+    for (const smoothieType in cookieCart) {
       smoothieArray.push(parseInt(smoothieType));
     }
-    smoothieHelpers.getSmoothieByArrayOfId(smoothieArray, (err, result) => {
+    SmoothieHelpers.getSmoothieByArrayOfId(smoothieArray, (err, result) => {
       console.log(result);
       const templateVars = {
         smoothies: result
@@ -58,29 +58,31 @@ module.exports = (smoothieHelpers) => {
 
   //user submits their order
   router.post("/orders/", (req, res) => {
+
     //grab cart from cookies
     let cart = req.cookies.cart;
-    console.log(cart);
     let order = [];
-    const name = 'Aaron' //req.body.name
-    const phoneNumber = '6042244448' //req.body.phonenumber
-    // for each smoothie in cart, push a smoothie to the order array
-    console.log(" TEST, ",cart);
+    const name = req.body['recipient-name'];
+    const phoneNumber = req.body['recipient-phone'];
 
-    for(const smoothieType in cart) {
+    // for each smoothie in cart, push a smoothie to the order array
+    for (const smoothieType in cart) {
       while (cart[smoothieType] > 0) {
-        order.push({smoothie_id: smoothieType});
-        cart[smoothieType] --
+        order.push({
+          smoothie_id: smoothieType
+        });
+        cart[smoothieType]--
       }
     }
-
-    //attach name and phone number to order
-    //run helper function passing order
-    console.log('new cookie', cart);
-    console.log(order);
-    res.cookie('cart', cart);
-    res.send({result:'True'});
-  })
+    OrderHelpers.orderItem(name, phoneNumber, order, (err, response) => {
+      if (err) {
+        // TODO: HANDLE ERRORS BY RENDERING IN THE USER'S VIEW?
+        console.log(err);
+      }
+      res.clearCookie('cart');
+      res.redirect(`/orders/${response}`);
+    });
+  });
 
   router.get("/orders/:id/", (req, res) => {
     res.render("orders");

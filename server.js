@@ -48,7 +48,7 @@ app.use(express.static("public"));
 
 // Mount all resource routes
 app.use(cookieParser())
-app.use("/", mainRoutes(SmoothieHelpers));
+app.use("/", mainRoutes(SmoothieHelpers, OrderHelpers));
 
 app.use("/api/smoothies", smoothieRoutes(SmoothieHelpers));
 app.use("/api/text", textRoutes(TextEngine));
