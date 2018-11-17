@@ -167,6 +167,14 @@ img.item-image {
   // }
 }
 
+@media all {
+  span.quantity {
+  border: 1px solid lightgrey;
+  font-size: 1.2em;
+  margin-left: 1em;
+  }
+}
+
 //------------------------------------------------
 // ORDER CONFIRMATION PAGE
 //------------------------------------------------
