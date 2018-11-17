@@ -7,15 +7,7 @@
 <header>
     <% include ./_headerpartial %>
 </header>
-
 <body>
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">RAD Smoothies</h1>
-      <p class="lead">Welcome to the raddest smoothies in Vancouver</p>
-    </div>
-  </div>
-
   <section class="body-container super-cool">
     <h3>Menu</h3>
         <% smoothies.forEach((smoothie, index) => { %>
@@ -34,7 +26,6 @@
             </div>
               <% } %>
         <% }); %>
-
       </div>
   </section>
 

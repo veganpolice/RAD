@@ -23,9 +23,26 @@ body {
   background-color: $second-color;
 }
 
+p.lead {
+  text-align: center;
+}
+
 h1 {
   font-family: $font-stack;
+  text-align: center;
 }
+
+footer {
+  text-align: center;
+  padding: 1em;
+}
+
+p.about-us {
+  padding: 4em;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
 //------------------------------------------------
 // MENU PAGE
 //------------------------------------------------
@@ -38,12 +55,6 @@ h1 {
   align-self: center;
   border-top-left-radius: calc(.25rem - 1px);
   border-top-right-radius: calc(.25rem - 1px);
-}
-
-p.about-us {
-  padding: 2em;
-  margin-top: 0;
-  margin-bottom: 1rem;
 }
 
 .add-item-btn {
@@ -102,6 +113,7 @@ img.item-image {
 .checkout-btn {
   border-radius: 0px;
   border: 1px solid $third-color;
+  background-color: $third-color;
 }
 
 #checkout {
