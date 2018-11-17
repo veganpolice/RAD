@@ -6,9 +6,12 @@
   <body class="order-confirmation-page">
         <h1 class="confirmation-info">Order Confirmation</h1>
         <h2 class="confirmation-info">Thank you for ordering</h3>
-        <h3 class="confirmation-info">ORDER ID: # :id</h2>
+        <h3 class="confirmation-info">ORDER ID: # <%= id%></h2>
+        <% if (confirmed) { %>
+        <p class="confirmation-info">Your order will be ready at <%= ready_at%></p>
+          <% } else { %>
         <p class="confirmation-info">RAD will send a confirmation of accepting the order</p>
+        <% } %>
         <h5 class="confirmation-info">Your Order:</h5>
-
 
 <% include ./_footerpartial %>

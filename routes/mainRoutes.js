@@ -40,7 +40,6 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
       smoothieArray.push(parseInt(smoothieType));
     }
     SmoothieHelpers.getSmoothieByArrayOfId(smoothieArray, (err, result) => {
-      console.log(result);
       const templateVars = {
         smoothies: result
       }
@@ -53,7 +52,23 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
   });
 
   router.get("/orders/:id/", (req, res) => {
-    res.render("order");
+    OrderHelpers.getOrderById(req.params.id, (err, response) => {
+      if (err) {
+        // TODO: Handle error by rendering to user?
+      }
+      console.log(response);
+      /* response[0] looks like this:
+        [{
+          id: 31,
+          customer_id: 11,
+          order_time: '2018-11-16 20:04:58',
+          confirmed: false,
+          ready_at: '2018-11-16 20:09:58'
+        }]
+       */
+      // TODO: POPULATE THIS WITH A BIT MORE INFO, MAYBE ALTERING response[0] OBJECT:
+      res.render("order", response[0]);
+    });
   });
 
   //user submits their order
@@ -74,10 +89,14 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
         cart[smoothieType]--
       }
     }
+
     OrderHelpers.orderItem(name, phoneNumber, order, (err, response) => {
       if (err) {
         // TODO: HANDLE ERRORS BY RENDERING IN THE USER'S VIEW?
         console.log(err);
+        res.json({
+          err
+        });
       }
       res.clearCookie('cart');
       res.redirect(`/orders/${response}`);
