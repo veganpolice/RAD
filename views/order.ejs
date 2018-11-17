@@ -6,9 +6,9 @@
   <body class="order-confirmation-page">
         <h1 class="confirmation-info">Your RAD Order</h1>
         <h2 class="confirmation-info">status: <% if (order.confirmed) { %> <font color='green'>confirmed</font></h2>
-        <p class="confirmation-info">Pickup your smoothies at <%= order.ready_at%></p>
+        <p class="confirmation-info">Please pickup your smoothies at <%= order.ready_at%></p>
           <% } else { %> <font color='orange'>pending</font></h2>
-          <p class="confirmation-info">Please wait while we review your order. You will revieve a sms when your order is confirmed.</p>
+        <p class="confirmation-info">please wait for RAD to confirm your order. you will be notified by SMS</p>
           <% } %>
        
         <h5 class="confirmation-info">Order # <%= order.id%></h5>
