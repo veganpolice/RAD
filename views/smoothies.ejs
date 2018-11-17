@@ -10,6 +10,7 @@
 <body>
   <section class="body-container super-cool">
     <h3>Menu</h3>
+      <% if (locals.smoothies) { %>
         <% locals.smoothies.forEach((smoothie, index) => { %>
           <% if (index === 0 || index % 3 === 0) { %>
             <div class="card-deck">
@@ -26,6 +27,7 @@
             </div>
               <% } %>
         <% }); %>
+        <% } %>
       </div>
   </section>
 
