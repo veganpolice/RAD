@@ -8,9 +8,10 @@ $(() => {
     }
   });;
 
-  $('.add-to-cart').click( () => {
+  $('.add-to-cart').click( (event) => {
     console.log('button clicked');
-    const smoothieId = $(this).data('smoothieId');
+    console.log(event.target);
+    const smoothieId = $(event.target).data('smoothieId');
     //populating body of request with smoothie id from html data attribute
       $.ajax({
       method: "POST",
