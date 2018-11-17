@@ -51,7 +51,7 @@ app.use(cookieParser())
 app.use("/", mainRoutes(SmoothieHelpers, OrderHelpers));
 
 app.use("/api/smoothies", smoothieRoutes(SmoothieHelpers));
-app.use("/api/text", textRoutes(TextEngine));
+app.use("/api/text", textRoutes(TextEngine, OrderHelpers));
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
