@@ -71,7 +71,8 @@ img.item-image {
   border-bottom: 0.5px solid #e9ecef; }
 
 .checkout-btn {
-  border-radius: 0px; }
+  border-radius: 0px;
+  border: 1px solid #e9ecef; }
 
 #checkout {
   border: 1px solid #e9ecef;
