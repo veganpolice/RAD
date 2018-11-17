@@ -10,7 +10,10 @@ module.exports = (smoothieHelpers) => {
   router.get("/", (req, res) => {
       res.render("index");
     });
+<<<<<<< HEAD
   
+=======
+>>>>>>> master
 
   //user goes to menu
   router.get("/smoothies/", (req, res) => {
@@ -19,7 +22,7 @@ module.exports = (smoothieHelpers) => {
     smoothieHelpers.getSmoothies( (err, result) => {
       //on result, store smoothie data in template vars as smoothies
       const templateVars = {
-        smoothies: result
+        smoothies: result,
       }
 
       //catchs errors and passes as object in templateVars
@@ -31,13 +34,17 @@ module.exports = (smoothieHelpers) => {
       res.render("smoothies", templateVars)
     })
   });
-  
+
   //user goes to shopping cart
   router.get("/orders/new/", (req, res) => {
     res.render("cart");
   });
-  
-  //user submits thier order
+
+  router.get("/orders/:id/", (req, res) => {
+    res.render("order");
+  });
+
+  //user submits their order
   router.post("/orders/", (req, res) => {
     //grab cart from cookies
     let cart = req.cookies.cart;

@@ -15,8 +15,10 @@
       <p class="lead">Welcome to the raddest smoothies in Vancouver</p>
     </div>
   </div>
+
   <section class="body-container">
     <h3>Menu</h3>
+<<<<<<< HEAD
       <div class="card-deck">
         <div class="card">
           <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Extreme C.png" alt="Extreme C">
@@ -58,17 +60,26 @@
               <h5 class="card-title">Karmarama Juice</h5>
               <p class="card-text">Liquid Good Karma</p>
               <button class="add-item-btn">Add to Cart</button>
+=======
+        <% smoothies.forEach((smoothie, index) => { %>
+          <% if (index === 0 || index % 3 === 0) { %>
+            <div class="card-deck">
+            <% } %>
+              <div class="card <%= smoothie.id %> ">
+                <img class="card-img-top" src="<%=smoothie.picture_url %>">
+                <div class="card-body">
+                  <h5 class="card-title"> <%= smoothie.description %></h5>
+                  <p class="card-text">$<%= (smoothie.price_cents / 100) %></p>
+                  <button class="add-item-btn add-to-cart">Add to Cart</button>
+                </div>
+              </div>
+            <%  if ((index + 1) % 3  === 0 || index === smoothies.length) { %>
+>>>>>>> master
             </div>
-          </div>
-          <div class="card">
-            <img class="card-img-top" src="https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Radical Action.png" alt="Go Fusion">
-            <div class="card-body">
-              <h5 class="card-title">Radical Action Juice</h5>
-              <p class="card-text">RAD Action</p>
-              <button class="add-item-btn">Add to Cart</button>
-            </div>
-          </div>
-        </div>
+              <% } %>
+        <% }); %>
+
+      </div>
   </section>
 
 <% include ./_footerpartial %>
