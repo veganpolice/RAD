@@ -20,10 +20,13 @@ module.exports = (TextEngine) => {
   });
 
   router.post('/receiveText', (req, res) => {
-    const textBody = req.body.Body;
+    const textBody = req.body;
     const phoneNumber = req.body.From;
-    console.log(req.body);
+    console.log(textBody);
+    res.status(200).json(200);
     // Do something with receiving texts!
   });
+
+
   return router;
 };
