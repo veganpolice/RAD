@@ -1,3 +1,10 @@
+.title:hover {
+  text-decoration: none;
+  color: black; }
+
+.title {
+  color: black; }
+
 body {
   font: 100% "Amatic SC", cursive;
   background-color: white; }
