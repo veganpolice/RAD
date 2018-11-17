@@ -42,12 +42,14 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
       }
       SmoothieHelpers.getSmoothieByArrayOfId(smoothieArray, (err, result) => {
         const templateVars = {
-          smoothies: result
+          smoothies: result,
+          cart: cookieCart
         }
         //catchs errors and passes as object in templateVars
         if (err) {
           templateVars.error.message = err;
         }
+        console.log(templateVars);
         res.render("cart", templateVars);
       })
     } else {
