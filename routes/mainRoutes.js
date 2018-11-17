@@ -79,12 +79,12 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
 
   //user submits their order
   router.post("/orders/", (req, res) => {
-
     //grab cart from cookies
+    console.log(req.body);
     let cart = req.cookies.cart;
     let order = [];
-    const name = req.body['recipient-name'];
-    const phoneNumber = req.body['recipient-phone'];
+    const name = req.body.recipientName;
+    const phoneNumber = req.body.recipientPhone;
 
     // for each smoothie in cart, push a smoothie to the order array
     for (const smoothieType in cart) {
@@ -95,6 +95,9 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
         cart[smoothieType]--
       }
     }
+
+    console.log(name, phoneNumber, order);
+
 
     OrderHelpers.orderItem(name, phoneNumber, order, (err, response) => {
       if (err) {
