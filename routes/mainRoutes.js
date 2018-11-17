@@ -59,61 +59,92 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
   router.get("/orders/:id/", (req, res) => {
     OrderHelpers.getOrderById(req.params.id, (err, response) => {
       if (err) {
-        // TODO: Handle error by rendering to user?
+        res.render("cart", {
+          error: {
+            message: `Whoops! Something went wrong on our end.`
+          }
+        });
       }
-
-      console.log(response);
-      /* response[0] looks like this:
-        [{
-          id: 31,
-          customer_id: 11,
-          order_time: '2018-11-16 20:04:58',
-          confirmed: false,
-          ready_at: '2018-11-16 20:09:58'
-        }]
-       */
-      // TODO: POPULATE THIS WITH A BIT MORE INFO, MAYBE ALTERING response[0] OBJECT:
-      res.render("order", response[0]);
+      if (response[0]) {
+        res.render("order", response[0]);
+      } else {
+        res.render("cart", {
+          error: {
+            message: `Order #${req.params.id} does not exist!`
+          }
+        });
+      }
     });
   });
 
-  //user submits their order
+
+  router.get("/orders", (req, res) => {
+    res.redirect('/orders/new');
+  });
+
+
   router.post("/orders/", (req, res) => {
-    //grab cart from cookies
-    console.log(req.body);
     let cart = req.cookies.cart;
     let order = [];
     const name = req.body.recipientName;
     const phoneNumber = req.body.recipientPhone;
 
-    // for each smoothie in cart, push a smoothie to the order array
-    for (const smoothieType in cart) {
-      while (cart[smoothieType] > 0) {
-        order.push({
-          smoothie_id: smoothieType
+    if (!name || !phoneNumber) {
+      const cookieCart = req.cookies.cart;
+      const smoothieArray = [];
+      for (const smoothieType in cookieCart) {
+        smoothieArray.push(parseInt(smoothieType));
+      }
+      console.log(smoothieArray)
+      SmoothieHelpers.getSmoothieByArrayOfId(smoothieArray, (err, result) => {
+        const templateVars = {
+          cart: cookieCart
+        }
+
+        if (err) {
+          templateVars['error'] = {
+            message: err
+          };
+        } else {
+          templateVars['error'] = {
+            message: `We need your number & phone number to complete your order.`
+          };
+          templateVars.smoothies = result;
+        }
+        res.render("cart", templateVars);
+      });
+    } else {
+      // for each smoothie in cart, push a smoothie to the order array
+      for (const smoothieType in cart) {
+        while (cart[smoothieType] > 0) {
+          order.push({
+            smoothie_id: smoothieType
+          });
+          cart[smoothieType]--
+        }
+      }
+
+      if (order.length === 0) {
+        res.render('cart', {
+          error: {
+            message: `Sorry! There's nothing in the cart!`
+          }
         });
-        cart[smoothieType]--
+      } else {
+        OrderHelpers.orderItem(name, phoneNumber, order, (err, response) => {
+          if (err) {
+            res.render("cart", {
+              error: {
+                message: `Whoops! Something went wrong on our end.`
+              }
+            });
+          } else {
+            res.clearCookie('cart');
+            res.redirect(`/orders/${response}`);
+          }
+        });
       }
     }
-
-    console.log(name, phoneNumber, order);
-
-
-    OrderHelpers.orderItem(name, phoneNumber, order, (err, response) => {
-      if (err) {
-        // TODO: HANDLE ERRORS BY RENDERING IN THE USER'S VIEW?
-        console.log(err);
-        res.json({
-          err
-        });
-      }
-      res.clearCookie('cart');
-      res.redirect(`/orders/${response}`);
-    });
-  });
-
-  router.get("/orders/:id/", (req, res) => {
-    res.render("orders");
   });
 
   //user cancels an order
