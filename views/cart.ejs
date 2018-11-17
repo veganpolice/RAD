@@ -26,8 +26,8 @@
             <span class='description'>
               <%=smoothie.description %></span>
             <span class="quantity"><button class="decrease-quantity" data-smoothieid="<%= smoothie.id%>"> - </button><span class="smoothie-quantity">
-                <%=cart[smoothie.id] %></span><button class="increase-quantity" data-smoothieid="<%= smoothie.id%>">+</button></span>
-            <span class='price'><%= new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format(cart[smoothie.id] * (smoothie.price_cents / 100))%></span>
+                <%=cart[smoothie.id] %> </span><button class="increase-quantity" data-smoothieid="<%= smoothie.id%>">+</button></span>
+            <span class='price'><%= new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'USD' }).format(cart[smoothie.id] * (smoothie.price_cents / 100))%></span>
           </span>
         </div>
       </div>

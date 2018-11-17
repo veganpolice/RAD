@@ -120,6 +120,12 @@ img.item-image {
     font-weight: bold;
     padding: 0.5em 0em; }
 
+@media all {
+  span.quantity {
+    border: 1px solid lightgrey;
+    font-size: 1.2em;
+    margin-left: 1em; } }
+
 .order-confirmation-page {
   background-color: #a1d0e2;
   padding: 5em 0em; }
