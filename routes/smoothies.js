@@ -6,19 +6,11 @@ const router = express.Router();
 
 module.exports = (smoothieHelpers) => {
 
-  //load smoothies
-  //this route replies with only a JSON object (of yumminess)
-  router.get('/', (req, res) => {
-    smoothieHelpers.getSmoothies((err, results) => {
-      err ? console.log(err) : res.json(results);
-    });
-  });
-
   //add a smoothie to cart (cookie)
   router.post('/addToCart', (req, res) => {
     
     // button needs html data attb. which will be the smoothie type
-    const smoothieId = 1 //placeholder, needs to be grabbed from html data attribute
+    const smoothieId = 2 //placeholder, needs to be grabbed from html data attribute
     
     //retrieve cookie from req head
     let cookie = req.cookies

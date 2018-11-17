@@ -34,34 +34,49 @@ module.exports = (smoothieHelpers) => {
   
   //user goes to shopping cart
   router.get("/orders/new/", (req, res) => {
-    //cart form is populated from cookie
-    const cart = 'cookie'//grab cart data from cookie
-
-    //placeholder for retrieving data from cookie
-    const placeHolderCart = [{id: 1, qty: 2}, {id: 2, qty: 1}]
-    const templateVars = {
-      placeHolderCart
-    }
-
-    //render cart and pass in template vars
-    res.render("cart", templateVars);
+    res.render("cart");
   });
   
   //user submits thier order
   router.post("/orders/", (req, res) => {
+    //grab cart from cookies
+    let cart = req.cookies.cart;
+    console.log(cart);
+    let order = [];
+    const name = 'Aaron' //req.body.name
+    const phoneNumber = '6042244448' //req.body.phonenumber
+    // for each smoothie in cart, push a smoothie to the order array
+    console.log(" TEST, ",cart);
 
-    //form retrieval goes here
-    //
+    // for(var key in cart){
+    //   var temp = cart[key];
+    //   for(var i = 1; i<=temp;i++){
+    //     var myObject = {'itemId':key};
+    //     order.push(myObject);
+    //   }
+    //   console.log("After processing ",order);
+    //   //console.log("All keys ",key);
+    // }
 
-    //placeholder for retrieved data from the form //req.body.params
-    const placeHolderCart = [{id: 1, qty: 2}, {id: 2, qty: 1}]
+    for(const smoothieType in cart) {
+      while (cart[smoothieType] > 0) {
+        order.push({smoothie_id: smoothieType});
+        cart[smoothieType] --
+      }
+    }
 
-    //sends order to db
-    //grabs order id
-    //destroy cookie
-    //redirects to /orders/:id
+    //attach name and phone number to order
+    //run helper function passing order
+    console.log('new cookie', cart);
+    console.log(order);
+    res.cookie('cart', cart);
+    res.send({result:'True'});
+  })
+
+  router.get("/orders/:id/", (req, res) => {
+    res.render("orders");
   });
-  
+
   //user cancels an order
   router.delete("/orders/:id/", (req, res) => {
     //sets order status to canceled in db
