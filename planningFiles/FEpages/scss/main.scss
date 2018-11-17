@@ -4,6 +4,15 @@ $third-color: #e9ecef; // light grey
 $default-color: white;
 $test-color: red;
 
+.title:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.title {
+  color: black;
+}
+
 body {
   font: 100% $font-stack;
   background-color: $default-color; 
