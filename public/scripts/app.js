@@ -80,7 +80,7 @@ $(() => {
     for (let i = 0; i < prices.length; i++) {
       totalPrice += parseFloat($(prices[i]).text().match(/[\d\.]+/));
     }
-    const formatedPrice = new Intl.NumberFormat('en-CA', {
+    const formatedPrice = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD'
     }).format(totalPrice);
