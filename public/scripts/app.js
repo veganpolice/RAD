@@ -21,6 +21,9 @@ $(() => {
     }).then((results) => {
       // We're going to update some fields!
       $(event.target.parentElement).children('.smoothie-quantity').text(results);
+      $(event.target.parentElement).parent().parent().children('span.item-row').children('span.price').text(
+        new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format('8.05'));
+
     });
   });
 
