@@ -4,50 +4,40 @@ const express = require('express');
 
 const router = express.Router();
 
+const updateCookie = (cookie, smoothieId, updateValue) => {
+  if (cookie.cart) {
+    cookie.cart[smoothieId] ? cookie.cart[smoothieId] += updateValue : cookie.cart[smoothieId] = updateValue;
+  } else {
+    const cookieCart = {
+      [smoothieId]: updateValue
+    };
+    cookie.cart = cookieCart;
+  }
+  if (cookie.cart[smoothieId] < 0) {
+    cookie.cart[smoothieId] = 0;
+  }
+  return cookie;
+};
+
 module.exports = (smoothieHelpers) => {
 
-  //add a smoothie to cart (cookie)
   router.post('/addToCart', (req, res) => {
-    
-    // button needs html data attb. which will be the smoothie type
-    const smoothieId = 2 //placeholder, needs to be grabbed from html data attribute
-    
-    //retrieve cookie from req head
-    let cookie = req.cookies
-    let cookieCart = cookie.cart
-    
-    //check if cookie exists
-    if (cookie.cart) {
-      cookie.cart[smoothieId] ? cookie.cart[smoothieId] += 1 : cookie.cart[smoothieId] = 1;
-    } else {
-      cookieCart = {[smoothieId]: 1};
-      cookie.cart = cookieCart
-    }
-    res.cookie('cart', cookie.cart);
-    console.log(cookie.cart)
-    res.send({result:'True'});
-    })
-  
+    const {
+      smoothieId
+    } = req.body;
+    const updatedCookie = updateCookie(req.cookies, smoothieId, 1);
+    res.cookie('cart', updatedCookie.cart);
+    res.json(updatedCookie.cart[smoothieId]);
+  });
+
   router.post('/rmvFromCart', (req, res) => {
-  
-    // button needs html data attb. which will be the smoothie type
-    const smoothieId = 1 //placeholder, needs to be grabbed from html data attribute
-    
-    //retrieve cookie from req head
-    let cookie = req.cookies
-    let cookieCart = cookie.cart
-    
-    //check if cookie exists
-    if (cookie.cart) {
-      cookie.cart[smoothieId] > 0 ? cookie.cart[smoothieId] -= 1 : cookie.cart[smoothieId] = 0;
-    } else {
-      cookieCart = {[smoothieId]: 0};
-      cookie.cart = cookieCart
-    }
-    res.cookie('cart', cookie.cart);
-    console.log(cookie.cart)
-    res.send({result:'True'});
-    })
+    const {
+      smoothieId
+    } = req.body;
+    const updatedCookie = updateCookie(req.cookies, smoothieId, -1);
+    res.cookie('cart', updatedCookie.cart);
+    res.json(updatedCookie.cart[smoothieId]);
+  })
 
   return router;
 };

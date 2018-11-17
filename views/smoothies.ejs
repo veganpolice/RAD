@@ -27,7 +27,7 @@
                 <div class="card-body">
                   <h5 class="card-title"> <%= smoothie.description %></h5>
                   <p class="card-text">$<%= (smoothie.price_cents / 100) %></p>
-                  <button class="add-item-btn add-to-cart">Add to Cart</button>
+                  <button class="add-item-btn add-to-cart" data-smoothieId="<%= smoothie.id%>">Add to Cart</button>
                 </div>
               </div>
             <%  if ((index + 1) % 3  === 0 || index === smoothies.length) { %>
