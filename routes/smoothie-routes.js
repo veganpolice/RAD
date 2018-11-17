@@ -42,11 +42,15 @@ module.exports = (smoothieHelpers) => {
     } = req.body;
     const updatedCookie = updateCookie(req.cookies, smoothieId, -1);
     res.cookie('cart', updatedCookie.cart);
-    if (!updatedCookie.cart[smoothieId]) {
-      console.log('no more in cart');
-      res.json(0);
+    if (Object.keys(updatedCookie.cart).length <= 0) {
+      res.clearCookie('cart');
+      res.json(-1);
     } else {
-      res.json(updatedCookie.cart[smoothieId]);
+      if (!updatedCookie.cart[smoothieId]) {
+        res.json(0);
+      } else {
+        res.json(updatedCookie.cart[smoothieId]);
+      }
     }
   });
 

@@ -21,9 +21,14 @@ $(() => {
     }).then((results) => {
       // We're going to update some fields!
       $(event.target.parentElement).children('.smoothie-quantity').text(results);
-      $(event.target.parentElement).parent().parent().children('span.item-row').children('span.price').text(
-        new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format('8.05'));
-
+      const priceElement = $(event.target.parentElement).parent().parent().children('span.item-row').children('span.price');
+      const oldPrice = parseFloat(priceElement.text().match(/[\d\.]+/));
+      const pricePerUnit = oldPrice / (results - 1);
+      const newPrice = pricePerUnit * results;
+      priceElement.text(new Intl.NumberFormat('en-CA', {
+        style: 'currency',
+        currency: 'CAD'
+      }).format(newPrice));
     });
   });
 
@@ -37,7 +42,23 @@ $(() => {
       },
     }).then((results) => {
       // We're going to update some fields!
-      $(event.target.parentElement).children('.smoothie-quantity').text(results);
+      // results -1 means there are no items in the cart:
+      if (results === -1) {
+        $('button.checkout-btn').remove();
+      }
+      if (results <= 0) {
+        $(event.target.parentElement).parent().parent().remove();
+      } else {
+        $(event.target.parentElement).children('.smoothie-quantity').text(results);
+        const priceElement = $(event.target.parentElement).parent().parent().children('span.item-row').children('span.price');
+        const oldPrice = parseFloat(priceElement.text().match(/[\d\.]+/));
+        const pricePerUnit = oldPrice / (results + 1);
+        const newPrice = pricePerUnit * results;
+        priceElement.text(new Intl.NumberFormat('en-CA', {
+          style: 'currency',
+          currency: 'CAD'
+        }).format(newPrice));
+      }
     });
   });
 
