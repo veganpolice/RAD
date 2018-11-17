@@ -10,10 +10,6 @@ module.exports = (smoothieHelpers) => {
   router.get("/", (req, res) => {
       res.render("index");
     });
-<<<<<<< HEAD
-  
-=======
->>>>>>> master
 
   //user goes to menu
   router.get("/smoothies/", (req, res) => {
