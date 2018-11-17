@@ -43,6 +43,7 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
         smoothieArray.push(parseInt(smoothieType));
       }
       SmoothieHelpers.getSmoothieByArrayOfId(smoothieArray, (err, result) => {
+        console.log(result)
         const templateVars = {
           smoothies: result,
           cart: cookieCart
@@ -69,8 +70,22 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
       }
       if (response[0]) {
         console.log(response[0]);
-        const order = response[0];
-        res.render("order", order);
+        const templateVars = {
+          order: response[0],
+          smoothies: [ { id: 1,
+            description: 'Carrot Top',
+            price_cents: 898,
+            picture_url: 'https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Carrot Top.png',
+            default_time: '300000',
+            quantity: 2},
+          { id: 2,
+            description: 'Cloudy Apple',
+            price_cents: 898,
+            picture_url: 'https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Cloudy Apple.png',
+            default_time: '300000',
+            quantity: 3 } ]
+        }
+        res.render("order", templateVars);
       } else {
         res.render("cart", {
           error: {
