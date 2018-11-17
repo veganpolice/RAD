@@ -8,12 +8,6 @@ body {
   body .card {
     padding: 1em; }
 
-.jumbotron {
-  background-color: #a1d0e2; }
-
-p.lead {
-  text-align: center; }
-
 h1 {
   font-family: "Amatic SC", cursive;
   text-align: center; }
@@ -26,6 +20,17 @@ p.about-us {
   padding: 4em;
   margin-top: 0;
   margin-bottom: 1rem; }
+
+.jumbotron {
+  background-color: #a1d0e2; }
+  .jumbotron .title {
+    color: black; }
+  .jumbotron .title:hover {
+    color: black;
+    opacity: 0.7; }
+  .jumbotron p.lead {
+    text-align: center;
+    font-size: 1.5em; }
 
 .card:hover {
   opacity: 0.7; }
@@ -98,6 +103,3 @@ img.item-image {
     font-size: 4em; }
   .order-confirmation-page h3.confirmation-info {
     padding: 1em 0em; }
-
-/* Run npm start for sass --watch (automatic updating and compiling to CSS file)
-must run this in /vagrant/midterm-project/RAD/planningFiles/FEpages */
