@@ -11,7 +11,7 @@
 <body>
   <div class="container-fluid">
     <div class="page-header">
-      <h1>Shopping Cart</h1>
+      <h1 class="shopping-cart-title">Shopping Cart</h1>
       <div class="cart-labels">
         <span class="item-label">ITEM</span>
         <span class="qty-label">QTY</span>
@@ -22,20 +22,17 @@
       <div class="row">
         <div class="col-xs-12">
           <img class="item-image" src="<%=smoothie.picture_url %>" class="rounded float-left" alt="<%=smoothie.description %>">
-          <span class="item-row">
-            <span class='description'>
-              <%=smoothie.description %></span>
-            <span class="quantity"><button class="decrease-quantity" data-smoothieid="<%= smoothie.id%>"> - </button><span class="smoothie-quantity">
-                <%=cart[smoothie.id] %> </span><button class="increase-quantity" data-smoothieid="<%= smoothie.id%>">+</button></span>
+          <span class="quantity"><button class="decrease-quantity btn btn-outline-secondary" data-smoothieid="<%= smoothie.id%>"> - </button><span class="smoothie-quantity">
+              <%=cart[smoothie.id] %></span><button class="increase-quantity btn btn-outline-secondary" data-smoothieid="<%= smoothie.id%>">+</button></span>
             <span class='price'><%= new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'USD' }).format(cart[smoothie.id] * (smoothie.price_cents / 100))%></span>
-          </span>
         </div>
+        <div class='description'> <%=smoothie.description %></div>
       </div>
       <% });  } %>
       <div class="total-table">
         <!-- <div class="subtotal"><span>Subtotal:</span><span>$0.00</span></div>
         <div class="subtotal"><span>Tax:</span><span>(price x 1.12)- subtotal</span></div> -->
-        <div class="total"><span>Total:</span><span class="total-price">$0.00</span></div>
+        <div class="total"><span>Total: </span><span class="total-price">$0.00</span></div>
       </div>
     </div>
   </div>

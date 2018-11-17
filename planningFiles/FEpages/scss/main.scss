@@ -1,4 +1,7 @@
-$font-stack: 'Amatic SC', cursive;
+$main-font: 'Amatic SC', cursive;
+// $second-font:'Rubik', sans-serif;
+// $second-font:'Open Sans Condensed', sans-serif;
+$second-font: 'Quicksand', sans-serif;
 $second-color: #a1d0e2; // light blue
 $third-color: #e9ecef; // light grey
 $default-color: white;
@@ -22,7 +25,7 @@ $test-color: red;
 }
 
 body {
-  font: 100% $font-stack;
+  font: 100% $second-font;
   background-color: $default-color; 
   font-size: 1em;
 
@@ -42,10 +45,15 @@ body {
   padding: 2rem;
 }
 
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .nav a {
   font-size: 1.5em;
   color: black;
-  margin: 0em 1em;
 }
 
 .nav a:hover {
@@ -59,7 +67,7 @@ p.lead {
 }
 
 h1 {
-  font-family: $font-stack;
+  font-family: $main-font;
   text-align: center;
 }
 
@@ -72,6 +80,10 @@ p.about-us {
   padding: 4em;
   margin-top: 0;
   margin-bottom: 1rem;
+}
+
+.about-us {
+  text-align: center;
 }
 
 //------------------------------------------------
@@ -100,28 +112,31 @@ p.about-us {
 //------------------------------------------------
 //  CART
 //------------------------------------------------
+
+.shopping-cart-title {
+  font-family: $second-font;
+  font-size: 1.75rem;
+}
 .cart-labels {
   border-bottom: 0.5px solid $third-color;
   padding: 0.5em 0em;
   font-size: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .price-label {
-  float: right;
   margin-right: 0.5em;
 }
 
-.price {
-  float: right;
-  margin-top: 2em;
-}
-
 .qty-label {
-  margin:0em 5em;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .item-label {
-  float: left;
   margin-left: 1em;
 }
 
@@ -132,6 +147,7 @@ img.item-image {
 
 .row {
   margin: 0.5em;
+  border-bottom: 0.5px solid $third-color;
 }
 
 .price {
@@ -140,7 +156,9 @@ img.item-image {
 
 .col-xs-12 {
   width: 100%;
-  border-bottom: 0.5px solid $third-color;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .checkout-btn {
@@ -169,12 +187,29 @@ img.item-image {
 
 @media all {
   span.quantity {
-  border: 1px solid lightgrey;
   font-size: 1.2em;
-  margin-left: 1em;
+  margin-left: -1em;
   }
 }
 
+span.smoothie-quantity {
+  margin: 0px 4px;
+}
+
+.btn-outline-secondary {
+  border-color: $third-color;
+}
+
+.btn-outline-secondary:hover {
+  color: $default-color;
+  background-color: $third-color;
+  border-color: $third-color;
+}
+
+input.btn.btn-primary {
+  background-color:$second-color;
+  border: solid $second-color;
+}
 //------------------------------------------------
 // ORDER CONFIRMATION PAGE
 //------------------------------------------------

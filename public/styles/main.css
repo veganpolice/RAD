@@ -11,7 +11,7 @@
     font-size: 1em; } }
 
 body {
-  font: 100% "Amatic SC", cursive;
+  font: 100% "Quicksand", sans-serif;
   background-color: white;
   font-size: 1em; }
   body .body-container {
@@ -25,10 +25,14 @@ body {
   background-color: #a1d0e2;
   padding: 2rem; }
 
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+
 .nav a {
   font-size: 1.5em;
-  color: black;
-  margin: 0em 1em; }
+  color: black; }
 
 .nav a:hover {
   color: black;
@@ -51,6 +55,9 @@ p.about-us {
   margin-top: 0;
   margin-bottom: 1rem; }
 
+.about-us {
+  text-align: center; }
+
 .card:hover {
   opacity: 0.7; }
 
@@ -69,24 +76,27 @@ p.about-us {
   position: absolute;
   margin-left: -36px; }
 
+.shopping-cart-title {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.75rem; }
+
 .cart-labels {
   border-bottom: 0.5px solid #e9ecef;
   padding: 0.5em 0em;
-  font-size: 1em; }
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
 
 .price-label {
-  float: right;
   margin-right: 0.5em; }
 
-.price {
-  float: right;
-  margin-top: 2em; }
-
 .qty-label {
-  margin: 0em 5em; }
+  display: table;
+  margin-left: auto;
+  margin-right: auto; }
 
 .item-label {
-  float: left;
   margin-left: 1em; }
 
 img.item-image {
@@ -94,14 +104,17 @@ img.item-image {
   width: 5em; }
 
 .row {
-  margin: 0.5em; }
+  margin: 0.5em;
+  border-bottom: 0.5px solid #e9ecef; }
 
 .price {
   margin-left: 2em; }
 
 .col-xs-12 {
   width: 100%;
-  border-bottom: 0.5px solid #e9ecef; }
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between; }
 
 .checkout-btn {
   border-radius: 0px;
@@ -122,9 +135,23 @@ img.item-image {
 
 @media all {
   span.quantity {
-    border: 1px solid lightgrey;
     font-size: 1.2em;
-    margin-left: 1em; } }
+    margin-left: -1em; } }
+
+span.smoothie-quantity {
+  margin: 0px 4px; }
+
+.btn-outline-secondary {
+  border-color: #e9ecef; }
+
+.btn-outline-secondary:hover {
+  color: white;
+  background-color: #e9ecef;
+  border-color: #e9ecef; }
+
+input.btn.btn-primary {
+  background-color: #a1d0e2;
+  border: solid #a1d0e2; }
 
 .order-confirmation-page {
   background-color: #a1d0e2;
