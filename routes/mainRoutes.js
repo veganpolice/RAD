@@ -49,7 +49,6 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
         if (err) {
           templateVars.error.message = err;
         }
-        console.log(templateVars);
         res.render("cart", templateVars);
       })
     } else {
@@ -62,6 +61,7 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
       if (err) {
         // TODO: Handle error by rendering to user?
       }
+
       console.log(response);
       /* response[0] looks like this:
         [{
