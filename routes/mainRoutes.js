@@ -4,18 +4,18 @@ const express = require('express');
 
 const router = express.Router();
 
-module.exports = (smoothieHelpers) => {
+module.exports = (SmoothieHelpers, OrderHelpers) => {
 
   // Home page
   router.get("/", (req, res) => {
-      res.render("index");
-    });
+    res.render("index");
+  });
 
   //user goes to menu
   router.get("/smoothies/", (req, res) => {
-    
+
     //grab smoothies data and pass to anon callback
-    smoothieHelpers.getSmoothies( (err, result) => {
+    SmoothieHelpers.getSmoothies((err, result) => {
       //on result, store smoothie data in template vars as smoothies
       const templateVars = {
         smoothies: result,
@@ -33,48 +33,75 @@ module.exports = (smoothieHelpers) => {
 
   //user goes to shopping cart
   router.get("/orders/new/", (req, res) => {
-    res.render("cart");
+
+    const cookieCart = req.cookies.cart;
+    let smoothieArray = [];
+    for (const smoothieType in cookieCart) {
+      smoothieArray.push(parseInt(smoothieType));
+    }
+    SmoothieHelpers.getSmoothieByArrayOfId(smoothieArray, (err, result) => {
+      const templateVars = {
+        smoothies: result
+      }
+      //catchs errors and passes as object in templateVars
+      if (err) {
+        templateVars.error.message = err;
+      }
+      res.render("cart", templateVars);
+    })
   });
 
   router.get("/orders/:id/", (req, res) => {
-    res.render("order");
+    OrderHelpers.getOrderById(req.params.id, (err, response) => {
+      if (err) {
+        // TODO: Handle error by rendering to user?
+      }
+      console.log(response);
+      /* response[0] looks like this:
+        [{
+          id: 31,
+          customer_id: 11,
+          order_time: '2018-11-16 20:04:58',
+          confirmed: false,
+          ready_at: '2018-11-16 20:09:58'
+        }]
+       */
+      // TODO: POPULATE THIS WITH A BIT MORE INFO, MAYBE ALTERING response[0] OBJECT:
+      res.render("order", response[0]);
+    });
   });
 
   //user submits their order
   router.post("/orders/", (req, res) => {
+
     //grab cart from cookies
     let cart = req.cookies.cart;
-    console.log(cart);
     let order = [];
-    const name = 'Aaron' //req.body.name
-    const phoneNumber = '6042244448' //req.body.phonenumber
+    const name = req.body['recipient-name'];
+    const phoneNumber = req.body['recipient-phone'];
+
     // for each smoothie in cart, push a smoothie to the order array
-    console.log(" TEST, ",cart);
-
-    // for(var key in cart){
-    //   var temp = cart[key];
-    //   for(var i = 1; i<=temp;i++){
-    //     var myObject = {'itemId':key};
-    //     order.push(myObject);
-    //   }
-    //   console.log("After processing ",order);
-    //   //console.log("All keys ",key);
-    // }
-
-    for(const smoothieType in cart) {
+    for (const smoothieType in cart) {
       while (cart[smoothieType] > 0) {
-        order.push({smoothie_id: smoothieType});
-        cart[smoothieType] --
+        order.push({
+          smoothie_id: smoothieType
+        });
+        cart[smoothieType]--
       }
     }
 
-    //attach name and phone number to order
-    //run helper function passing order
-    console.log('new cookie', cart);
-    console.log(order);
-    res.cookie('cart', cart);
-    res.send({result:'True'});
-  })
+    OrderHelpers.orderItem(name, phoneNumber, order, (err, response) => {
+      if (err) {
+        // TODO: HANDLE ERRORS BY RENDERING IN THE USER'S VIEW?
+        console.log(err);
+        res.json({
+          err
+        });
+      }
+      res.clearCookie('cart');
+      res.redirect(`/orders/${response}`);
+    });
+  });
 
   router.get("/orders/:id/", (req, res) => {
     res.render("orders");

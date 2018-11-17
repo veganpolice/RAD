@@ -24,7 +24,7 @@ const TextEngine = require('./lib/TextEngine')();
 
 // Seperated Routes for each Resource
 const mainRoutes = require("./routes/mainRoutes");
-const smoothieRoutes = require("./routes/smoothies");
+const smoothieRoutes = require("./routes/smoothie-routes");
 const textRoutes = require("./routes/textRoutes");
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -48,7 +48,7 @@ app.use(express.static("public"));
 
 // Mount all resource routes
 app.use(cookieParser())
-app.use("/", mainRoutes(SmoothieHelpers));
+app.use("/", mainRoutes(SmoothieHelpers, OrderHelpers));
 
 app.use("/api/smoothies", smoothieRoutes(SmoothieHelpers));
 app.use("/api/text", textRoutes(TextEngine));
