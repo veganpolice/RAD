@@ -19,10 +19,16 @@ body {
   }
 }
 
+.jumbotron {
+  background-color: $second-color;
+}
+
 h1 {
   font-family: $font-stack;
 }
-
+//------------------------------------------------
+// MENU PAGE
+//------------------------------------------------
 .card:hover {
   opacity: 0.7;
 }
@@ -40,20 +46,43 @@ p.about-us {
   margin-bottom: 1rem;
 }
 
-.jumbotron {
-  background-color: $second-color;
-}
-
 .add-item-btn {
   width: 100%;
-  border: 1px;
+  border: 1px solid $third-color;
+  background: $third-color;
   padding: .5em;
   bottom: 0;
   position: absolute;
   margin-left: -36px;
 }
+//------------------------------------------------
+//  CART
+//------------------------------------------------
+.cart-labels {
+  border-bottom: 0.5px solid $third-color;
+  padding: 0.5em 0em;
+}
 
-.item-image {
+.price-label {
+  float: right;
+  margin-right: 0.5em;
+}
+
+.price {
+  float: right;
+  margin-top: 2em;
+}
+.qty-label {
+  margin-left:10em;
+}
+
+.item-label {
+  float: left;
+  margin-left: 1em;
+}
+
+img.item-image {
+  padding: 0.5em;
   width: 5em;
 }
 
@@ -66,15 +95,35 @@ p.about-us {
 }
 
 .col-xs-12 {
-    border: 1px solid lightgrey;
-    width: 100%;
+  width: 100%;
+  border-bottom: 0.5px solid $third-color;
 }
 
+.checkout-btn {
+  border-radius: 0px;
+}
+
+#checkout {
+  border: 1px solid $third-color;
+  background: $third-color;
+  border-radius: 0px;
+}
+//------------------------------------------------
+// ORDER CONFIRMATION PAGE
+//------------------------------------------------
 .order-confirmation-page {
   background-color: $second-color;
   padding: 5em 0em;
   .confirmation-info {
     text-align: center;
+  }
+  h1.confirmation-info {
+    margin-top: 2em;
+    font-size: 4em;
+  }
+
+  h3.confirmation-info {
+    padding: 1em 0em;
   }
 }
 
