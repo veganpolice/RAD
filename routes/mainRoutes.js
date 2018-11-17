@@ -17,12 +17,13 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
     //grab smoothies data and pass to anon callback
     SmoothieHelpers.getSmoothies((err, result) => {
       //on result, store smoothie data in template vars as smoothies
+      const templateVars = {
+      }
 
-      // FOR DAVID: If get a merge conflict, use Aarons!
-      const templateVars = {};
-      // catchs errors and passes as object in templateVars
       if (err) {
-        templateVars.error.message = err;
+        templateVars['error'] = {
+          message: err
+        }
       } else {
         templateVars.smoothies = result;
       }
