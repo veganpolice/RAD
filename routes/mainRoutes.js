@@ -33,7 +33,23 @@ module.exports = (smoothieHelpers) => {
 
   //user goes to shopping cart
   router.get("/orders/new/", (req, res) => {
-    res.render("cart");
+
+    const cookieCart = req.cookies.cart;
+    let smoothieArray = [];
+    for(const smoothieType in cookieCart) {
+      smoothieArray.push(parseInt(smoothieType));
+    }
+    smoothieHelpers.getSmoothieByArrayOfId(smoothieArray, (err, result) => {
+      console.log(result);
+      const templateVars = {
+        smoothies: result
+      }
+      //catchs errors and passes as object in templateVars
+      if (err) {
+        templateVars.error.message = err;
+      }
+      res.render("cart", templateVars);
+    })
   });
 
   router.get("/orders/:id/", (req, res) => {
@@ -50,16 +66,6 @@ module.exports = (smoothieHelpers) => {
     const phoneNumber = '6042244448' //req.body.phonenumber
     // for each smoothie in cart, push a smoothie to the order array
     console.log(" TEST, ",cart);
-
-    // for(var key in cart){
-    //   var temp = cart[key];
-    //   for(var i = 1; i<=temp;i++){
-    //     var myObject = {'itemId':key};
-    //     order.push(myObject);
-    //   }
-    //   console.log("After processing ",order);
-    //   //console.log("All keys ",key);
-    // }
 
     for(const smoothieType in cart) {
       while (cart[smoothieType] > 0) {
