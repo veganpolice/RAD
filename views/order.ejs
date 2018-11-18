@@ -6,21 +6,34 @@
   <div class="order-confirmation-page">
         <h1 class="confirmation-info">Your RAD Order</h1>
         <h2 class="confirmation-info">status: <% if (order.confirmed) { %> <font color='green'>confirmed</font></h2>
-        <p class="confirmation-info">Please pickup your smoothies at <%= order.ready_at%></p>
+        <p class="confirmation-info">your order will be ready at <%= order.ready_at%></p>
           <% } else { %> <font color='orange'>pending</font></h2>
         <p class="confirmation-info">Please wait while we confirm your order.</p>
           <% } %>
        
-        <h5 class="confirmation-info">Order # <%= id%></h5>
+
+      
+
+        <div class="cart-labels">
+            <span class="item-label">ITEM</span>
+            <span> </span>
+            <span class="qty-label">QTY</span>
+            <span class="price-label">PRICE</span>
+          </div>
+
+
         <% smoothies.forEach((smoothie) => { %>
-          <% [smoothie].quantity = 1 %>
           <div class="row">
             <div class="col-xs-12">
-              <span class="quantity"><span class="smoothie-quantity">
-                  <%= [smoothie].quantity %></span></span>
-                <span class='price'><%= new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'USD' }).format([smoothie].quantity * (smoothie.price_cents / 100))%></span>
+              <span class='description'> 
+                <%=smoothie.description %>
+                </span> 
+              <span>
+                <%= smoothie.quantity %></span>
+                <span class='price'>
+                  <%= new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'USD' }).format(smoothie.quantity * (smoothie.price_cents / 100))%></span>
             </div>
-            <div class='description'> <%=smoothie.description %></div>
+            
           </div>
           <% });%>
           
