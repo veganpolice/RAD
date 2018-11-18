@@ -15,15 +15,11 @@ body {
   background-color: white;
   font-size: 1em; }
   body .body-container {
-    margin: 1em; }
+    margin: 0, 1em, 1em; }
   body .card-deck {
     margin: 15px; }
   body .card {
     padding: 1em; }
-
-.jumbotron {
-  background-color: #a1d0e2;
-  padding: 2rem; }
 
 .nav {
   display: flex;
@@ -39,7 +35,7 @@ body {
   color: black; }
 
 .nav a:hover {
-  color: black;
+  color: #090909;
   text-decoration: none; }
 
 p.lead {

@@ -10,7 +10,6 @@
 <% include ./_navbar %>
 <body>
   <section class="body-container super-cool">
-    <h3>Menu</h3>
       <% if (locals.smoothies) { %>
         <% locals.smoothies.forEach((smoothie, index) => { %>
           <% if (index === 0 || index % 3 === 0) { %>
@@ -31,5 +30,6 @@
         <% } %>
       </div>
   </section>
+</div>
 
 <% include ./_footerpartial %>

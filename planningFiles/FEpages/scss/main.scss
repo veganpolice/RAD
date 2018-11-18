@@ -12,6 +12,7 @@ $test-color: red;
   color: black;
 }
 
+
 .title {
   color: black;
   // font-weight: bold;
@@ -30,7 +31,7 @@ body {
   font-size: 1em;
 
   .body-container {
-    margin: 1em;
+    margin: 0, 1em, 1em;
   }
   .card-deck {
     margin: 15px;
@@ -38,11 +39,7 @@ body {
   .card {
     padding: 1em;
   }
-}
 
-.jumbotron {
-  background-color: $second-color;
-  padding: 2rem;
 }
 
 .nav {
@@ -61,7 +58,7 @@ body {
 }
 
 .nav a:hover {
-  color: black;
+  color: #090909;
   text-decoration: none;
 }
 
@@ -213,11 +210,14 @@ input.btn.btn-primary {
   border: solid $second-color;
 }
 
+<<<<<<< HEAD
 button.checkout-btn.btn.fixed-bottom.btn-lg.btn-block {
   position: sticky;
   bottom: 1px;
 }
 
+=======
+>>>>>>> master
 //------------------------------------------------
 // ORDER CONFIRMATION PAGE
 //------------------------------------------------

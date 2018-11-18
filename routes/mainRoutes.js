@@ -4,7 +4,7 @@ const express = require('express');
 
 const router = express.Router();
 
-module.exports = (SmoothieHelpers, OrderHelpers) => {
+module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
 
   // Home page
   router.get("/", (req, res) => {
@@ -43,6 +43,7 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
         smoothieArray.push(parseInt(smoothieType));
       }
       SmoothieHelpers.getSmoothieByArrayOfId(smoothieArray, (err, result) => {
+        console.log(result)
         const templateVars = {
           smoothies: result,
           cart: cookieCart
@@ -59,7 +60,10 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
   });
 
   router.get("/orders/:id/", (req, res) => {
-    OrderHelpers.getOrderById(req.params.id, (err, response) => {
+
+    const id = req.params.id;
+
+    OrderHelpers.getOrderDetails(id, (err, response) => {
       if (err) {
         res.render("cart", {
           error: {
@@ -67,20 +71,54 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
           }
         });
       }
-      if (response[0]) {
-        res.render("order", response[0]);
-      } else {
-        res.render("cart", {
-          error: {
-            message: `Order #${req.params.id} does not exist!`
+      if (response) {
+        console.log('response from getOrderById', response);
+        const order = response;
+        const smoothieOrderArray = response.smoothie_ids;
+        console.log(smoothieOrderArray)
+        const orderedSmoothies = {};
+
+        SmoothieHelpers.getSmoothieByArrayOfId(smoothieOrderArray, (err, response) => {
+          if (err) {
+            res.render("cart", {
+              error: {
+                message: `Whoops! Something went wrong on our end.`
+              }
+            });
+          }
+          if (response) {
+            console.log('result from get SmoothieByArray:', response)
+
+            const templateVars = {
+              order: order,
+              id: id,
+              smoothies: response
+            }
+
+            console.log('templateVars', templateVars)
+
+
+
+            res.render("order", templateVars);
+          } else {
+            res.render("cart", {
+              error: {
+                message: `Order #${req.params.id} does not exist!`
+              }
+            });
           }
         });
-      }
-    });
+
+
+          }
+        })
+
+
   });
 
 
   router.get("/orders", (req, res) => {
+
     res.redirect('/orders/new');
   });
 
@@ -135,14 +173,29 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
       } else {
         OrderHelpers.orderItem(name, phoneNumber, order, (err, response) => {
           if (err) {
-            res.render("cart", {
+            res.render('cart', {
               error: {
                 message: `Whoops! Something went wrong on our end.`
               }
             });
+            console.log(err);
           } else {
-            res.clearCookie('cart');
-            res.redirect(`/orders/${response}`);
+            // (restaurantPhone, customerPhone, orderId, order, defaultTime, callback)
+            TextEngine.textBot('+14315575235', phoneNumber, response, {
+              order
+            }, 5, (error, textId) => {
+              if (error) {
+                res.render('cart', {
+                  error: {
+                    message: `Whoops! Something went wrong sending your text to the restaurant: ${error}`
+                  },
+                });
+              } else {
+                console.log(`Text Sent! ${textId}`);
+                res.clearCookie('cart');
+                res.redirect(`/orders/${response}`);
+              }
+            });
           }
         });
       }
