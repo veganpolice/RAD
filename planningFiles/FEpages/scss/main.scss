@@ -43,10 +43,11 @@ body {
 }
 
 .nav {
-  display: flex;
-  align-items: center;
+  // display: flex;
+  // align-items: center;
   justify-content: space-around;
   position: sticky;
+  position: -webkit-sticky;
   top: 0px;
   z-index: 99;
   background-color: $second-color;
@@ -211,7 +212,7 @@ input.btn.btn-primary {
 
 button.checkout-btn.btn.fixed-bottom.btn-lg.btn-block {
   position: sticky;
-  bottom: 1px;
+  bottom: 0px;
 }
 
 //------------------------------------------------

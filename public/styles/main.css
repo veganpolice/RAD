@@ -22,8 +22,6 @@ body {
     padding: 1em; }
 
 .nav {
-  display: flex;
-  align-items: center;
   justify-content: space-around;
   position: sticky;
   top: 0px;
@@ -153,7 +151,7 @@ input.btn.btn-primary {
 
 button.checkout-btn.btn.fixed-bottom.btn-lg.btn-block {
   position: sticky;
-  bottom: 1px; }
+  bottom: 0px; }
 
 .order-confirmation-page {
   background-color: #a1d0e2;
