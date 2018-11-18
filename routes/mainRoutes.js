@@ -87,31 +87,35 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
               }
             });
           } else if(response){
-              console.log('response from second call')
-              const cookieSmoothies = req.cookies.cart;
+              const cookieSmoothies = {2:1, 3:2, 1:4};
               const smoothiesInOrder = response;
-              console.log("rohit test", cookieSmoothies);
-              cookieSmoothies.forEach((smoothieId) => {
-                smoothiesInOrder.forEach((smoothie) => {
-                  if (smoothieId == smoothie.id) {
-                    if (smoothie.id.quantity) {
-                      smoothie.id.quantity += 1;
-                    } else {
-                      smoothie.id.quantity = 1;
-                    }
-                  }
-                })  
-              });
+              console.log('----------------------------------')
+
               
-              // console.log("response from second call - Rohit ",smoothiesInOrder);
-              // const templateVars = {
-              //   order: order,
-              //   id: id,
-              //   cookie: req.cookies.cart,
-              //   smoothies: smoothiesInOrder,
-              // }
-              // console.log('templateVars', templateVars);
-              // res.render("order", templateVars);
+              // helper function to add quant to smoothies -- this can be moved
+              const addQuantityToSmoothies = function (cookieSmoothies, smoothiesInOrder) {
+                let smoothiesWithQuantities = smoothiesInOrder;
+                for(const smoothieId in cookieSmoothies) {
+                  smoothiesWithQuantities.forEach((smoothie) => {
+                    if (smoothieId == smoothie.id) {
+                        smoothie.quantity = cookieSmoothies[smoothieId];
+                    }
+                  }) 
+                }
+                return smoothiesWithQuantities; 
+              } // end of helper function
+
+
+              const smoothies = addQuantityToSmoothies(cookieSmoothies, smoothiesInOrder);
+              
+              const templateVars = {
+                order: order,
+                id: id,
+                smoothies: smoothies,
+              }
+
+              console.log('templateVars', templateVars);
+              res.render("order", templateVars);
           } //Bracket for the IF (RESPONSE) in the second datahelper call
           else {
             console.log('neither err nor response from second call');
@@ -132,13 +136,6 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
         } //else bracket for the main DataHelperCall
     });//orderHelper Call bracket ends here.
   }); //router.get orders/:id bracket ends here. 
-
-
-        
-
-        //   }
-  //       })
-
 
 
   router.get("/orders", (req, res) => {
