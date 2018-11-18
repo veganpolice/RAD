@@ -12,6 +12,7 @@ $test-color: red;
   color: black;
 }
 
+
 .title {
   color: black;
   // font-weight: bold;
@@ -30,7 +31,7 @@ body {
   font-size: 1em;
 
   .body-container {
-    margin: 1em;
+    margin: 0, 1em, 1em;
   }
   .card-deck {
     margin: 15px;
@@ -38,12 +39,26 @@ body {
   .card {
     padding: 1em;
   }
+
+}
+
+:target {
+  background-color: yellow;
 }
 
 .jumbotron {
   background-color: $second-color;
   padding: 2rem;
+  // position: fixed;                    // this can be commented out
+  // z-index: 90;                        // to retrn to non-fixed 
+  // margin-top: -1em;                   // header. TODO: make the logo
+  // width: 100%;                        // scroll offscreen but nav remain
+
 }
+
+// .main-content {                         //
+//   padding-top: 10em;                    //
+// }                                       //
 
 .nav {
   display: flex;
@@ -57,7 +72,7 @@ body {
 }
 
 .nav a:hover {
-  color: black;
+  color: #090909;
   text-decoration: none;
 }
 

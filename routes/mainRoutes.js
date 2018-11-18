@@ -43,6 +43,7 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
         smoothieArray.push(parseInt(smoothieType));
       }
       SmoothieHelpers.getSmoothieByArrayOfId(smoothieArray, (err, result) => {
+        console.log(result)
         const templateVars = {
           smoothies: result,
           cart: cookieCart
@@ -59,7 +60,10 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
   });
 
   router.get("/orders/:id/", (req, res) => {
-    OrderHelpers.getOrderById(req.params.id, (err, response) => {
+
+    const id = req.params.id;
+  
+    OrderHelpers.getOrderDetails(id, (err, response) => {
       if (err) {
         res.render("cart", {
           error: {
@@ -67,20 +71,54 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
           }
         });
       }
-      if (response[0]) {
-        res.render("order", response[0]);
-      } else {
-        res.render("cart", {
-          error: {
-            message: `Order #${req.params.id} does not exist!`
+      if (response) {
+        console.log('response from getOrderById', response);
+        const order = response;
+        const smoothieOrderArray = response.smoothie_ids;
+        console.log(smoothieOrderArray)
+        const orderedSmoothies = {};
+
+        SmoothieHelpers.getSmoothieByArrayOfId(smoothieOrderArray, (err, response) => {
+          if (err) {
+            res.render("cart", {
+              error: {
+                message: `Whoops! Something went wrong on our end.`
+              }
+            });
+          }
+          if (response) {
+            console.log('result from get SmoothieByArray:', response)
+
+            const templateVars = {
+              order: order,
+              id: id,
+              smoothies: response
+            }
+
+            console.log('templateVars', templateVars)
+
+
+
+            res.render("order", templateVars);
+          } else {
+            res.render("cart", {
+              error: {
+                message: `Order #${req.params.id} does not exist!`
+              }
+            });
           }
         });
-      }
-    });
+
+
+          }
+        })
+
+        
   });
 
 
   router.get("/orders", (req, res) => {
+
     res.redirect('/orders/new');
   });
 
