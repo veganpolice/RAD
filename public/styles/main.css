@@ -134,8 +134,7 @@ img.item-image {
 
 @media all {
   span.quantity {
-    font-size: 1.2em;
-    margin-left: -1em; } }
+    font-size: 1.2em; } }
 
 span.smoothie-quantity {
   margin: 0px 4px; }
