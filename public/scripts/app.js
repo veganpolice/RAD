@@ -88,6 +88,9 @@ $(() => {
   }
   calculateTotalPrice();
 
+  });
+
+
 
   /*
 	Add to cart fly effect with jQuery. - May 05, 2013
@@ -151,9 +154,10 @@ $(() => {
             $(this).detach()
         });
     }
-});
 
-});
+
+  });
+
 
 //on cart submit
 //FUNCTION createOrderObject

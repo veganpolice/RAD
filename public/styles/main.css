@@ -31,13 +31,17 @@ body .main-content {
   padding-top: 10em;
 }
 
+:target {
+  background-color: yellow;
+}
+
 .jumbotron {
   background-color: #a1d0e2;
+  padding: 2rem;
   position: fixed;
   z-index: 90;
   margin-top: -1em;
   width: 100%;
-  padding: 2rem;
 }
 
 .nav {
@@ -52,7 +56,7 @@ body .main-content {
 }
 
 .nav a:hover {
-  color: black;
+  color: #090909;
   text-decoration: none;
 }
 
