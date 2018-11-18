@@ -42,24 +42,6 @@ body {
 
 }
 
-:target {
-  background-color: yellow;
-}
-
-.jumbotron {
-  background-color: $second-color;
-  padding: 2rem;
-  // position: fixed;                    // this can be commented out
-  // z-index: 90;                        // to retrn to non-fixed 
-  // margin-top: -1em;                   // header. TODO: make the logo
-  // width: 100%;                        // scroll offscreen but nav remain
-
-}
-
-// .main-content {                         //
-//   padding-top: 10em;                    //
-// }                                       //
-
 .nav {
   display: flex;
   align-items: center;
@@ -220,6 +202,7 @@ input.btn.btn-primary {
   background-color:$second-color;
   border: solid $second-color;
 }
+
 //------------------------------------------------
 // ORDER CONFIRMATION PAGE
 //------------------------------------------------
