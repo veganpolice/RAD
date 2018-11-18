@@ -87,36 +87,45 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
               }
             });
           } else if(response){
-              const cookieSmoothies = {2:1, 3:2, 1:4};
               const smoothiesInOrder = response;
-              console.log('----------------------------------')
+              console.log('response from second call', response)
+              console.log('id: ', id);
 
-              
-              // helper function to add quant to smoothies -- this can be moved
-              const addQuantityToSmoothies = function (cookieSmoothies, smoothiesInOrder) {
-                let smoothiesWithQuantities = smoothiesInOrder;
-                for(const smoothieId in cookieSmoothies) {
-                  smoothiesWithQuantities.forEach((smoothie) => {
-                    if (smoothieId == smoothie.id) {
-                        smoothie.quantity = cookieSmoothies[smoothieId];
+              OrderHelpers.getCookieByOrderId(id, (err, response) => {
+                console.log('third call triggered')
+                if (err) {
+                  console.log('error in third call')
+                  res.render("cart", {
+                    error: {
+                      message: `Whoops! Something went wrong on our end.`
                     }
-                  }) 
+                  });
+                } else if(response){
+                  console.log('third call response, ', response)
+                  const cookieSmoothies = response;
+
+                  const smoothies = addQuantityToSmoothies(cookieSmoothies, smoothiesInOrder);
+
+                  const templateVars = {
+                    order: order,
+                    id: id,
+                    smoothies: smoothies,
+                  }
+    
+                  console.log('templateVars', templateVars);
+                  res.render("order", templateVars);
+
+                } //brack ends for IF of response of third datahelper
+                else {
+                  console.log('neither err nor response from second call');
+                  res.render("smoothies", {
+                    error: {
+                      message: `Order #${req.params.id} does not exist!`
+                    }
+                  })
                 }
-                return smoothiesWithQuantities; 
-              } // end of helper function
-
-
-              const smoothies = addQuantityToSmoothies(cookieSmoothies, smoothiesInOrder);
-              
-              const templateVars = {
-                order: order,
-                id: id,
-                smoothies: smoothies,
-              }
-
-              console.log('templateVars', templateVars);
-              res.render("order", templateVars);
-          } //Bracket for the IF (RESPONSE) in the second datahelper call
+              }) //bracket closes for third datahelper GETCOOKIE by ID
+          } //Bracket closes for the IF (RESPONSE) in the second datahelper call
           else {
             console.log('neither err nor response from second call');
             res.render("smoothies", {
@@ -137,6 +146,19 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
     });//orderHelper Call bracket ends here.
   }); //router.get orders/:id bracket ends here. 
 
+
+  // helper function to add quant to smoothies -- this can be moved
+  const addQuantityToSmoothies = function (cookieSmoothies, smoothiesInOrder) {
+    let smoothiesWithQuantities = smoothiesInOrder;
+    for(const smoothieId in cookieSmoothies) {
+      smoothiesWithQuantities.forEach((smoothie) => {
+        if (smoothieId == smoothie.id) {
+            smoothie.quantity = cookieSmoothies[smoothieId];
+        }
+      }) 
+    }
+    return smoothiesWithQuantities; 
+  } // end of helper function
 
   router.get("/orders", (req, res) => {
 
