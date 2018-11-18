@@ -48,7 +48,7 @@ body {
   position: -webkit-sticky;
   top: 0px;
   z-index: 99;
-  background-color: $second-color;
+  background-color: $default-color;
   padding: 1em 0em;
   margin-top: -1px;
 }
@@ -72,7 +72,7 @@ h1 {
   font-family: $main-font;
   text-align: center;
   padding: 1em 0em;
-  background-color: $second-color;
+  background-color: $default-color;
   margin-bottom: 0px;
 }
 
@@ -228,7 +228,7 @@ button.checkout-btn.btn.fixed-bottom.btn-lg.btn-block {
 // ORDER CONFIRMATION PAGE
 //------------------------------------------------
 .order-confirmation-page {
-  background-color: $second-color;
+  background-color: $default-color;
   padding: 5em 0em;
   .confirmation-info {
     text-align: center;
