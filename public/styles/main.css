@@ -24,6 +24,7 @@ body {
 .nav {
   justify-content: space-around;
   position: sticky;
+  position: -webkit-sticky;
   top: 0px;
   z-index: 99;
   background-color: #a1d0e2; }
