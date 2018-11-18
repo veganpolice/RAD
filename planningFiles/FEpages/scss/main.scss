@@ -43,14 +43,14 @@ body {
 }
 
 .nav {
-  // display: flex;
-  // align-items: center;
   justify-content: space-around;
   position: sticky;
   position: -webkit-sticky;
   top: 0px;
   z-index: 99;
   background-color: $second-color;
+  padding: 1em 0em;
+  margin-top: -1px;
 }
 
 .nav a {
@@ -143,6 +143,7 @@ p.about-us {
 img.item-image {
   padding: 0.5em;
   width: 5em;
+  margin-top: 15px;
 }
 
 .row {
@@ -159,6 +160,13 @@ img.item-image {
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+}
+
+.description {
+  position: absolute;
+  top: 0px;
+  left: 7px;
 }
 
 .checkout-btn {
@@ -214,6 +222,7 @@ button.checkout-btn.btn.fixed-bottom.btn-lg.btn-block {
   position: sticky;
   bottom: 0px;
 }
+
 
 //------------------------------------------------
 // ORDER CONFIRMATION PAGE

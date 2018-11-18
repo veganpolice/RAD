@@ -27,7 +27,9 @@ body {
   position: -webkit-sticky;
   top: 0px;
   z-index: 99;
-  background-color: #a1d0e2; }
+  background-color: #a1d0e2;
+  padding: 1em 0em;
+  margin-top: -1px; }
 
 .nav a {
   font-size: 1.5em;
@@ -99,7 +101,8 @@ p.about-us {
 
 img.item-image {
   padding: 0.5em;
-  width: 5em; }
+  width: 5em;
+  margin-top: 15px; }
 
 .row {
   margin: 0.5em;
@@ -112,7 +115,13 @@ img.item-image {
   width: 100%;
   display: inline-flex;
   align-items: center;
-  justify-content: space-between; }
+  justify-content: space-between;
+  position: relative; }
+
+.description {
+  position: absolute;
+  top: 0px;
+  left: 7px; }
 
 .checkout-btn {
   border-radius: 0px;
