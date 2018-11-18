@@ -65,6 +65,7 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
 
     OrderHelpers.getOrderDetails(id, (err, response) => {
       if (err) {
+        console.log('this block getting run')
         res.render("cart", {
           error: {
             message: `Whoops! Something went wrong on our end.`
@@ -86,22 +87,38 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
               }
             });
           }
+       
           if (response) {
-            console.log('result from get SmoothieByArray:', response)
+          
+
+            const cookieSmoothies = req.cookies.cart;
+            const smoothiesInOrder = response;
+
+            cookieSmoothies.forEach((smoothieId) => {
+              smoothiesInOrder.forEach((smoothie) => {
+                if (smoothieId == smoothie.id) {
+                  if (smoothie.id.quantity) {
+                    smoothie.id.quantity += 1;
+                  } else {
+                    smoothie.id.quantity = 1;
+                  }
+                }
+              })  
+            })
 
             const templateVars = {
               order: order,
               id: id,
-              smoothies: response
+              cookie: req.cookies.cart,
+              smoothies: smoothiesInOrder,
             }
 
             console.log('templateVars', templateVars)
 
-
-
             res.render("order", templateVars);
           } else {
-            res.render("cart", {
+            console.log('tried to run this block');
+            res.render("menu", {
               error: {
                 message: `Order #${req.params.id} does not exist!`
               }
