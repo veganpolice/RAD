@@ -20,7 +20,7 @@ const knexLogger = require('knex-logger');
 const SmoothieHelpers = require('./lib/smoothie-helpers')(knex);
 const CustomerHelpers = require('./lib/customer-helpers')(knex);
 const OrderHelpers = require('./lib/order-helpers')(knex, CustomerHelpers)
-const TextEngine = require('./lib/TextEngine')(OrderHelpers);
+const TextEngine = require('./lib/TextEngine')();
 
 // Seperated Routes for each Resource
 const mainRoutes = require("./routes/mainRoutes");
