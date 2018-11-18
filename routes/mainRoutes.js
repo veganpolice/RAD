@@ -62,7 +62,7 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
   router.get("/orders/:id/", (req, res) => {
 
     const id = req.params.id;
-  
+
     OrderHelpers.getOrderDetails(id, (err, response) => {
       if (err) {
         res.render("cart", {
@@ -113,7 +113,7 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
           }
         })
 
-        
+
   });
 
 
@@ -181,7 +181,7 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
             console.log(err);
           } else {
             // (restaurantPhone, customerPhone, orderId, order, defaultTime, callback)
-            TextEngine.textBot('+14315575235', 'phoneNumber', response, {
+            TextEngine.textBot('+14315575235', phoneNumber, response, {
               order
             }, 5, (error, textId) => {
               if (error) {
