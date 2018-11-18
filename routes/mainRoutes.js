@@ -60,9 +60,7 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
   });
 
   router.get("/orders/:id/", (req, res) => {
-
     const id = req.params.id;
-
     OrderHelpers.getOrderDetails(id, (err, response) => {
       if (err) {
         console.log('this block getting run')
@@ -72,66 +70,75 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
           }
         });
       }
-      if (response) {
+      else if (response) {
         console.log('response from getOrderById', response);
         const order = response;
         const smoothieOrderArray = response.smoothie_ids;
         console.log(smoothieOrderArray)
-        const orderedSmoothies = {};
-
+        //If Every thing goes fine, the second call should be made
+        //SECOND CALL TO THE DATA HELPER STARTS HERE
         SmoothieHelpers.getSmoothieByArrayOfId(smoothieOrderArray, (err, response) => {
+          console.log('second call triggered');
           if (err) {
+            console.log('error in second call')
             res.render("cart", {
               error: {
                 message: `Whoops! Something went wrong on our end.`
               }
             });
-          }
-       
-          if (response) {
-          
-
-            const cookieSmoothies = req.cookies.cart;
-            const smoothiesInOrder = response;
-
-            cookieSmoothies.forEach((smoothieId) => {
-              smoothiesInOrder.forEach((smoothie) => {
-                if (smoothieId == smoothie.id) {
-                  if (smoothie.id.quantity) {
-                    smoothie.id.quantity += 1;
-                  } else {
-                    smoothie.id.quantity = 1;
+          } else if(response){
+              console.log('response from second call')
+              const cookieSmoothies = req.cookies.cart;
+              const smoothiesInOrder = response;
+              console.log("rohit test", cookieSmoothies);
+              cookieSmoothies.forEach((smoothieId) => {
+                smoothiesInOrder.forEach((smoothie) => {
+                  if (smoothieId == smoothie.id) {
+                    if (smoothie.id.quantity) {
+                      smoothie.id.quantity += 1;
+                    } else {
+                      smoothie.id.quantity = 1;
+                    }
                   }
-                }
-              })  
-            })
-
-            const templateVars = {
-              order: order,
-              id: id,
-              cookie: req.cookies.cart,
-              smoothies: smoothiesInOrder,
-            }
-
-            console.log('templateVars', templateVars)
-
-            res.render("order", templateVars);
-          } else {
-            console.log('tried to run this block');
-            res.render("menu", {
+                })  
+              });
+              
+              // console.log("response from second call - Rohit ",smoothiesInOrder);
+              // const templateVars = {
+              //   order: order,
+              //   id: id,
+              //   cookie: req.cookies.cart,
+              //   smoothies: smoothiesInOrder,
+              // }
+              // console.log('templateVars', templateVars);
+              // res.render("order", templateVars);
+          } //Bracket for the IF (RESPONSE) in the second datahelper call
+          else {
+            console.log('neither err nor response from second call');
+            res.render("smoothies", {
               error: {
                 message: `Order #${req.params.id} does not exist!`
               }
             });
-          }
-        });
+          } //Else bracket ends here for the SEcond Data helper if no err and no repsonse.
+        }); //bracket closes for the SECOND DATAHELPER CALL
+      } else{
+          console.log('neither err nor response from second call');
+          res.render("smoothies", {
+              error: {
+                message: `Order #${req.params.id} does not exist!`
+              }
+          }) //res.render error 
+        } //else bracket for the main DataHelperCall
+    });//orderHelper Call bracket ends here.
+  }); //router.get orders/:id bracket ends here. 
 
 
-          }
-        })
+        
 
+        //   }
+  //       })
 
-  });
 
 
   router.get("/orders", (req, res) => {
