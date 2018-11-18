@@ -35,8 +35,8 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
 
   //user goes to shopping cart
   router.get("/orders/new/", (req, res) => {
-
     const cookieCart = req.cookies.cart;
+    console.log(cookieCart);
     if (cookieCart) {
       let smoothieArray = [];
       for (const smoothieType in cookieCart) {
@@ -148,6 +148,8 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
 
 
   router.post("/orders/", (req, res) => {
+    // THIS LINE BELOW IS USED FOR STORING COOKIE LATER. DON'T TOUCH:
+    const hardCart = JSON.parse(JSON.stringify(req.cookies.cart));
     let cart = req.cookies.cart;
     let order = [];
     const name = req.body.recipientName;
@@ -159,7 +161,6 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
       for (const smoothieType in cookieCart) {
         smoothieArray.push(parseInt(smoothieType));
       }
-      console.log(smoothieArray)
       SmoothieHelpers.getSmoothieByArrayOfId(smoothieArray, (err, result) => {
         const templateVars = {
           cart: cookieCart
@@ -195,14 +196,13 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
           }
         });
       } else {
-        OrderHelpers.orderItem(name, phoneNumber, order, (err, response) => {
+        OrderHelpers.orderItem(name, phoneNumber, order, hardCart, (err, response) => {
           if (err) {
             res.render('cart', {
               error: {
                 message: `Whoops! Something went wrong on our end.`
               }
             });
-            console.log(err);
           } else {
             // (restaurantPhone, customerPhone, orderId, order, defaultTime, callback)
             TextEngine.textBot('+14315575235', phoneNumber, response, {
