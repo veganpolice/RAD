@@ -4,7 +4,7 @@ const express = require('express');
 
 const router = express.Router();
 
-module.exports = (TextEngine) => {
+module.exports = (TextEngine, OrderHelpers) => {
   router.post('/sendText', (req, res) => {
     const messageToSend = req.body.message;
     const toPhoneNumber = req.body.toPhoneNumber;
@@ -12,7 +12,9 @@ module.exports = (TextEngine) => {
       TextEngine.sendText(messageToSend, toPhoneNumber, (err, results) => {
         if (err) {
           console.log('there was an error with sending the text.');
-          res.status(500).send({Error: 'Something went wrong on our end...'});
+          res.status(500).send({
+            Error: 'Something went wrong on our end...'
+          });
         }
         res.json(results);
       });
@@ -23,8 +25,16 @@ module.exports = (TextEngine) => {
     const textBody = req.body;
     const phoneNumber = req.body.From;
     console.log(textBody);
-    res.status(200).json(200);
-    // Do something with receiving texts!
+    const time = Number(textBody.time);
+    const orId = Number(textBody.order);
+    OrderHelpers.confirmOrderPromise(time, orId)
+      .then((order) => {
+        res.status(200).json(200);
+        console.log(order);
+      })
+      .catch((error) => {
+        res.status(500).json(error);
+      });
   });
 
 
