@@ -27,9 +27,6 @@ body .card-deck {
 body .card {
   padding: 1em;
 }
-body .main-content {
-  padding-top: 10em;
-}
 
 :target {
   background-color: yellow;
@@ -38,10 +35,6 @@ body .main-content {
 .jumbotron {
   background-color: #a1d0e2;
   padding: 2rem;
-  position: fixed;
-  z-index: 90;
-  margin-top: -1em;
-  width: 100%;
 }
 
 .nav {

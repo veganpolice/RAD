@@ -39,9 +39,7 @@ body {
   .card {
     padding: 1em;
   }
-  .main-content {
-    padding-top: 10em;
-  }
+
 }
 
 :target {
@@ -51,12 +49,16 @@ body {
 .jumbotron {
   background-color: $second-color;
   padding: 2rem;
-  position: fixed;                    // this can be commented out
-  z-index: 90;                        // to retrn to non-fixed 
-  margin-top: -1em;                   // header. TODO: make the logo
-  width: 100%;                        // scroll offscreen but nav remain
-  
+  // position: fixed;                    // this can be commented out
+  // z-index: 90;                        // to retrn to non-fixed 
+  // margin-top: -1em;                   // header. TODO: make the logo
+  // width: 100%;                        // scroll offscreen but nav remain
+
 }
+
+// .main-content {                         //
+//   padding-top: 10em;                    //
+// }                                       //
 
 .nav {
   display: flex;
