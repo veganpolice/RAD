@@ -60,7 +60,10 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
   });
 
   router.get("/orders/:id/", (req, res) => {
-    OrderHelpers.getOrderById(req.params.id, (err, response) => {
+
+    const id = req.params.id;
+  
+    OrderHelpers.getOrderDetails(id, (err, response) => {
       if (err) {
         res.render("cart", {
           error: {
@@ -68,32 +71,49 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
           }
         });
       }
-      if (response[0]) {
-        console.log(response[0]);
-        const templateVars = {
-          order: response[0],
-          smoothies: [ { id: 1,
-            description: 'Carrot Top',
-            price_cents: 898,
-            picture_url: 'https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Carrot Top.png',
-            default_time: '300000',
-            quantity: 2},
-          { id: 2,
-            description: 'Cloudy Apple',
-            price_cents: 898,
-            picture_url: 'https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/Cloudy Apple.png',
-            default_time: '300000',
-            quantity: 3 } ]
-        }
-        res.render("order", templateVars);
-      } else {
-        res.render("cart", {
-          error: {
-            message: `Order #${req.params.id} does not exist!`
+      if (response) {
+        console.log('response from getOrderById', response);
+        const order = response;
+        const smoothieOrderArray = response.smoothie_ids;
+        console.log(smoothieOrderArray)
+        const orderedSmoothies = {};
+
+        SmoothieHelpers.getSmoothieByArrayOfId(smoothieOrderArray, (err, response) => {
+          if (err) {
+            res.render("cart", {
+              error: {
+                message: `Whoops! Something went wrong on our end.`
+              }
+            });
+          }
+          if (response) {
+            console.log('result from get SmoothieByArray:', response)
+
+            const templateVars = {
+              order: order,
+              id: id,
+              smoothies: response
+            }
+
+            console.log('templateVars', templateVars)
+
+
+
+            res.render("order", templateVars);
+          } else {
+            res.render("cart", {
+              error: {
+                message: `Order #${req.params.id} does not exist!`
+              }
+            });
           }
         });
-      }
-    });
+
+
+          }
+        })
+
+        
   });
 
 
