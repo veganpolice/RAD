@@ -8,8 +8,8 @@ exports.seed = function(knex, Promise) {
           order_id: 1,
           cookie: {
             '1': 1,
-            '2': 1,
-            '3': 1,
+            '1': 1,
+            '1': 1,
           },
         }),
         knex('cookies').insert({
