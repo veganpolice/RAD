@@ -49,6 +49,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: sticky;
+  top: 0px;
+  z-index: 99;
+  background-color: $second-color;
 }
 
 .nav a {
@@ -69,6 +73,9 @@ p.lead {
 h1 {
   font-family: $main-font;
   text-align: center;
+  padding: 1em 0em;
+  background-color: $second-color;
+  margin-bottom: 0px;
 }
 
 footer {
@@ -205,6 +212,12 @@ input.btn.btn-primary {
   background-color:$second-color;
   border: solid $second-color;
 }
+
+button.checkout-btn.btn.fixed-bottom.btn-lg.btn-block {
+  position: sticky;
+  bottom: 1px;
+}
+
 //------------------------------------------------
 // ORDER CONFIRMATION PAGE
 //------------------------------------------------

@@ -28,7 +28,11 @@ body {
 .nav {
   display: flex;
   align-items: center;
-  justify-content: space-between; }
+  justify-content: space-between;
+  position: sticky;
+  top: 0px;
+  z-index: 99;
+  background-color: #a1d0e2; }
 
 .nav a {
   font-size: 1.5em;
@@ -44,7 +48,10 @@ p.lead {
 
 h1 {
   font-family: "Amatic SC", cursive;
-  text-align: center; }
+  text-align: center;
+  padding: 1em 0em;
+  background-color: #a1d0e2;
+  margin-bottom: 0px; }
 
 footer {
   text-align: center;
@@ -148,6 +155,10 @@ span.smoothie-quantity {
 input.btn.btn-primary {
   background-color: #a1d0e2;
   border: solid #a1d0e2; }
+
+button.checkout-btn.btn.fixed-bottom.btn-lg.btn-block {
+  position: sticky;
+  bottom: 1px; }
 
 .order-confirmation-page {
   background-color: #a1d0e2;
