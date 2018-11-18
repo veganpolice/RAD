@@ -33,7 +33,7 @@ exports.seed = function(knex, Promise) {
           default_time: '300000'
         }),
         knex.into('smoothies').insert({
-          id: 5,
+          // id: 5,
           description: 'Avocado',
           price_cents: 998,
           picture_url: 'https://i1.wp.com/www.emilieeats.com/wp-content/uploads/2015/12/Banana_Mango_Avocado_Green_Smoothie_3_edit.jpg?w=680&ssl=1',
