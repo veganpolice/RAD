@@ -21,7 +21,7 @@ $(() => {
     }).then((results) => {
       // We're going to update some fields!
       $(event.target.parentElement).children('.smoothie-quantity').text(results);
-      const priceElement = $(event.target.parentElement).parent().parent().children('span.item-row').children('span.price');
+      const priceElement = $(event.target.parentElement).parent().children('span.price');
       const oldPrice = parseFloat(priceElement.text().match(/[\d\.]+/));
       const pricePerUnit = oldPrice / (results - 1);
       const newPrice = pricePerUnit * results;
@@ -51,7 +51,7 @@ $(() => {
         $(event.target.parentElement).parent().parent().remove();
       } else {
         $(event.target.parentElement).children('.smoothie-quantity').text(results);
-        const priceElement = $(event.target.parentElement).parent().parent().children('span.item-row').children('span.price');
+        const priceElement = $(event.target.parentElement).parent().children('span.price');
         const oldPrice = parseFloat(priceElement.text().match(/[\d\.]+/));
         const pricePerUnit = oldPrice / (results + 1);
         const newPrice = pricePerUnit * results;
@@ -96,7 +96,7 @@ $(() => {
 	Add to cart fly effect with jQuery. - May 05, 2013
 	(c) 2013 @ElmahdiMahmoud - fikra-masri.by
 	license: https://www.opensource.org/licenses/mit-license.php
-  */ 
+  */
   $('.add-to-cart').on('click', function () {
     const cart = $('.shopping-cart');
     console.log('!!!', cart);
@@ -127,21 +127,21 @@ $(() => {
           var interval = 100;
           var distance = 10;
           var times = 3;
-  
+
           $(div).css('position', 'relative');
-  
+
           for (var iter = 0; iter < (times + 1) ; iter++) {
               $(div).animate({
                   top: ((iter % 2 == 0 ? distance : distance * -1))
               }, interval);
-          }                                                                                                          
+          }
           $(div).animate({ top: 0 }, interval);
       }
-        
+
         setTimeout(function () {
             console.log(cart)
             shake(cart);
-            
+
             // effect("shake", {
             //     times: 2
             // }, 200);
