@@ -4,7 +4,7 @@ const express = require('express');
 
 const router = express.Router();
 
-module.exports = (SmoothieHelpers, OrderHelpers) => {
+module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
 
   // Home page
   router.get("/", (req, res) => {
@@ -135,14 +135,29 @@ module.exports = (SmoothieHelpers, OrderHelpers) => {
       } else {
         OrderHelpers.orderItem(name, phoneNumber, order, (err, response) => {
           if (err) {
-            res.render("cart", {
+            res.render('cart', {
               error: {
                 message: `Whoops! Something went wrong on our end.`
               }
             });
+            console.log(err);
           } else {
-            res.clearCookie('cart');
-            res.redirect(`/orders/${response}`);
+            // (restaurantPhone, customerPhone, orderId, order, defaultTime, callback)
+            TextEngine.textBot('+14315575235', 'phoneNumber', response, {
+              order
+            }, 5, (error, textId) => {
+              if (error) {
+                res.render('cart', {
+                  error: {
+                    message: `Whoops! Something went wrong sending your text to the restaurant: ${error}`
+                  },
+                });
+              } else {
+                console.log(`Text Sent! ${textId}`);
+                res.clearCookie('cart');
+                res.redirect(`/orders/${response}`);
+              }
+            });
           }
         });
       }
