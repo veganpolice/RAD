@@ -63,7 +63,6 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
     const id = req.params.id;
     OrderHelpers.getOrderDetails(id, (err, response) => {
       if (err) {
-        console.log('this block getting run')
         res.render("cart", {
           error: {
             message: `Whoops! Something went wrong on our end.`
@@ -111,7 +110,7 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
                     id: id,
                     smoothies: smoothies,
                   }
-    
+
                   console.log('templateVars', templateVars);
                   res.render("order", templateVars);
 
@@ -141,10 +140,10 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
               error: {
                 message: `Order #${req.params.id} does not exist!`
               }
-          }) //res.render error 
+          }) //res.render error
         } //else bracket for the main DataHelperCall
     });//orderHelper Call bracket ends here.
-  }); //router.get orders/:id bracket ends here. 
+  }); //router.get orders/:id bracket ends here.
 
 
   // helper function to add quant to smoothies -- this can be moved
@@ -155,9 +154,9 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
         if (smoothieId == smoothie.id) {
             smoothie.quantity = cookieSmoothies[smoothieId];
         }
-      }) 
+      })
     }
-    return smoothiesWithQuantities; 
+    return smoothiesWithQuantities;
   } // end of helper function
 
   router.get("/orders", (req, res) => {
@@ -223,6 +222,7 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
               }
             });
           } else {
+<<<<<<< HEAD
               
               //CREATING new ORDER and SMOOTHIE object to pass to textbot for sending to restaurant
               const id = response;
@@ -301,6 +301,24 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
                       });
                     } //Else bracket ends here for the SEcond Data helper if no err and no repsonse.
                   }); //bracket closes for the SECOND DATAHELPER CALL in CREATING ORDER
+=======
+            // (restaurantPhone, customerPhone, orderId, order, defaultTime, callback)
+            TextEngine.textBot('+14315575235', phoneNumber, response,
+              'SOMETHING NEW'
+            , 5, (error, textId) => {
+              if (error) {
+                res.render('cart', {
+                  error: {
+                    message: `Whoops! Something went wrong sending your text to the restaurant: ${error}`
+                  },
+                });
+              } else {
+                console.log(`Text Sent! ${textId}`);
+                res.clearCookie('cart');
+                res.redirect(`/orders/${response}`);
+              }
+            });
+>>>>>>> master
           }
         });
       }
