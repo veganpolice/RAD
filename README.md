@@ -17,11 +17,11 @@ Our stack:
 - Heroku
 
 ## Final Product 
-!["About me page (pt.1)"](link)
-!["Menu page"](link)
-!["Cart page"](link)
-!["Checkout modal"](link)
-!["Confirmation page"](link)
+!["About me page (pt.1)"](https://github.com/aaronrbg/RAD/blob/master/screenshots/radsmoothies%20homepage.png)
+!["Menu page"](https://github.com/aaronrbg/RAD/blob/master/screenshots/menu.png)
+!["Cart page"](https://github.com/aaronrbg/RAD/blob/master/screenshots/cart.png)
+!["Checkout modal"](https://github.com/aaronrbg/RAD/blob/master/screenshots/checkout-modal.png)
+!["Confirmation page"](https://github.com/aaronrbg/RAD/blob/master/screenshots/order-confirmation.png)
 
 ## Getting Started in Dev Mode
 
