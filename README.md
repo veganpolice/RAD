@@ -1,13 +1,52 @@
 # RAD
-Rachel, Aaron and David's project
+*R*achel, *A*aron and *D*avid's project
+
+
+For our Midterm Group Project, we've chosen to go with the Food Pick-up Ordering option. RAD is a smoothie pick-up mobile first full stack appplication. Thirsty clients can visit our smoothie store and place an order. Using Twilio's API, customers will receive an SMS notification confirming their order and also a notification when their order is ready. 
+
+Our stack: 
+- Node
+- Express
+- jQuery
+- SASS
+- AJAX
+- Bootstrap
+- PostgreSQL
+- Knex.js
+- git 
+- Heroku
+
+## Final Product 
+!["About me page (pt.1)"](link)
+!["Menu page"](link)
+!["Cart page"](link)
+!["Checkout modal"](link)
+!["Confirmation page"](link)
 
 ## Getting Started in Dev Mode
 
-clone repo
-npm i
-npm rebuild node-sass
-npm run knex migrate:latest
-npm run knex seed:run
+1. Clone this repository.
+2. Install dependencies using the `npm install` command.
+3. Run:
+  - `npm rebuild node-sass`
+  - `npm run knex migrate:latest`
+  - `npm run knex seed:run`
+4. Check .env_example and fill TWILIO fields with authentication keys from https://twilio.com
+5. Start the web server using the `npm run local` command
+5. Go to http://localhost:8080/ in your browser.
 
-npm run local
-http://localhost:8080/
+## Dependencies
+
+- Express 
+- EJS
+- jQuery
+- Node-sass middleware
+- PostgreSQL
+- Twilio API 
+- Knex
+- Moment
+- DOTenv
+- Cookie parser
+- Cookie session
+- Morgan
+- Google libphonenumber 

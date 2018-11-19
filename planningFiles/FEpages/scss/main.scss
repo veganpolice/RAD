@@ -241,15 +241,14 @@ span.smoothie-quantity {
 }
 
 input.btn.btn-primary {
-  background-color:$third-color;
-  border: solid $third-color;
+  background-color:black;
+  border: solid black;
 }
 
 button.checkout-btn.btn.fixed-bottom.btn-lg.btn-block {
   position: sticky;
   bottom: 0px;
 }
-
 
 //------------------------------------------------
 // ORDER CONFIRMATION PAGE

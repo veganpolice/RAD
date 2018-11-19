@@ -187,8 +187,8 @@ span.smoothie-quantity {
   border-color: #e9ecef; }
 
 input.btn.btn-primary {
-  background-color: #e9ecef;
-  border: solid #e9ecef; }
+  background-color: black;
+  border: solid black; }
 
 button.checkout-btn.btn.fixed-bottom.btn-lg.btn-block {
   position: sticky;
