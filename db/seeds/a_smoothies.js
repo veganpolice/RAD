@@ -12,6 +12,13 @@ exports.seed = function(knex, Promise) {
           default_time: '300000'
         }),
         knex.into('smoothies').insert({
+          // id: 3,
+          description: 'RAD Rainbow',
+          price_cents: 2531,
+          picture_url: 'https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/rainbow.png',
+          default_time: '300000'
+        }),
+        knex.into('smoothies').insert({
           // id: 2,
           description: 'Cash Money Mix',
           price_cents: 898,
@@ -38,16 +45,7 @@ exports.seed = function(knex, Promise) {
           price_cents: 949,
           picture_url: 'https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/yellow.png',
           default_time: '300000'
-        }),
-        knex.into('smoothies').insert({
-          // id: 3,
-          description: 'RAD Rainbow',
-          price_cents: 2531,
-          picture_url: 'https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/rainbow.png',
-          default_time: '300000'
         })
-
-        
       ]);
     });
 };
