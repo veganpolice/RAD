@@ -1,10 +1,11 @@
 # RAD
-*R*achel, *A*aron and *D*avid's project
+# # Authors
+*R*achel [https://github.com/RachWongRW/](@RachWongRW), *A*aron [https://github.com/aaronrbg/](@aaronrbg) and *D*avid [https://github.com/fiveache/](@fiveache)'s project
 
+## Description
+For our Midterm Group Project, we've chosen to go with the Food Pick-up Ordering option. RAD is a smoothie pick-up mobile first full stack appplication. Thirsty clients can visit our smoothie store and place an order. Using Twilio's API, customers will receive an SMS notification confirming their order and also a notification when their order is ready.
 
-For our Midterm Group Project, we've chosen to go with the Food Pick-up Ordering option. RAD is a smoothie pick-up mobile first full stack appplication. Thirsty clients can visit our smoothie store and place an order. Using Twilio's API, customers will receive an SMS notification confirming their order and also a notification when their order is ready. 
-
-Our stack: 
+## Our stack: 
 - Node
 - Express
 - jQuery
@@ -13,10 +14,10 @@ Our stack:
 - Bootstrap
 - PostgreSQL
 - Knex.js
-- git 
+- git
 - Heroku
 
-## Final Product 
+## Final Product
 !["About me page (pt.1)"](link)
 !["Menu page"](link)
 !["Cart page"](link)
@@ -37,16 +38,16 @@ Our stack:
 
 ## Dependencies
 
-- Express 
+- Express
 - EJS
 - jQuery
 - Node-sass middleware
 - PostgreSQL
-- Twilio API 
+- Twilio API
 - Knex
 - Moment
 - DOTenv
 - Cookie parser
 - Cookie session
 - Morgan
-- Google libphonenumber 
+- Google libphonenumber
