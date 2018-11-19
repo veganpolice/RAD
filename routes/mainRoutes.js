@@ -1,5 +1,5 @@
 "use strict";
-
+require('dotenv').config();
 const express = require('express');
 
 const router = express.Router();
@@ -219,26 +219,88 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
           if (err) {
             res.render('cart', {
               error: {
-                message: `Whoops! Something went wrong on our end.`
+                message: `5Whoops! Something went wrong on our end.`
               }
             });
           } else {
-            // (restaurantPhone, customerPhone, orderId, order, defaultTime, callback)
-            TextEngine.textBot('+14315575235', phoneNumber, response, {
-              order
-            }, 5, (error, textId) => {
-              if (error) {
-                res.render('cart', {
-                  error: {
-                    message: `Whoops! Something went wrong sending your text to the restaurant: ${error}`
-                  },
-                });
-              } else {
-                console.log(`Text Sent! ${textId}`);
-                res.clearCookie('cart');
-                res.redirect(`/orders/${response}`);
-              }
-            });
+              
+              //CREATING new ORDER and SMOOTHIE object to pass to textbot for sending to restaurant
+              const id = response;
+                  SmoothieHelpers.getSmoothies((err, response) => {
+                    if (err) {
+                      res.render("cart", {
+                        error: {
+                          message: `Whoops! Something went wrong, ${err}.`
+                        }
+                      });
+                    } else if(response){
+                        const smoothies = response;          
+                        OrderHelpers.getCookieByOrderId(id, (err, response) => {
+                          if (err) {
+                            res.render("cart", {
+                              error: {
+                                message: `Whoops! Something went wrong, ${err}.`
+                              }
+                            });
+                          } else if(response){
+                            const cookieSmoothies = response;
+                            const smoothiesWithQuantities = addQuantityToSmoothies(cookieSmoothies, smoothies);
+              
+                            //console.log('smoothies withQ', smoothiesWithQuantities);
+                            
+                            let orderText = []
+                            //console.log(smoothiesWithQuantities)
+
+                            smoothiesWithQuantities.forEach((smoothie) => {
+
+                              console.log(smoothie.hasOwnProperty('quantity'))
+                              console.log(smoothie)
+
+                              if (smoothie.hasOwnProperty('quantity')) {
+                                orderText.push(`${smoothie.description} x ${smoothie.quantity}`)
+                              }
+                            })
+
+                            const joinedOrderText = orderText.join(', ')
+
+                            //(restaurantPhone, customerPhone, orderId, order, defaultTime, callback)
+                            TextEngine.textBot(process.env.TWILIO_TO_NUMBER, phoneNumber, id, joinedOrderText, 5, (error, textId) => {
+                              if (error) {
+                                res.render('cart', {
+                                  error: {
+                                    message: `Whoops! Something went wrong sending your text to the restaurant: ${error}`
+                                  },
+                                });
+                              } else {
+                                console.log(`Text Sent! ${textId}`);
+                                res.clearCookie('cart');
+                                console.log(response)
+                                console.log(response.toString())
+                                res.redirect(`/orders/${id}`);
+                              }
+                            }); // end of textEngine.textbot
+
+          
+                          } //brack ends for IF of response of third datahelper
+                          else {
+                            console.log('neither err nor response from second call');
+                            res.render("smoothies", {
+                              error: {
+                                message: `Order #${req.params.id} does not exist!`
+                              }
+                            })
+                          }
+                        }) //bracket closes for third datahelper GETCOOKIE by ID
+                    } //Bracket closes for the IF (RESPONSE) in the second datahelper call
+                    else {
+                      console.log('neither err nor response from second call');
+                      res.render("smoothies", {
+                        error: {
+                          message: `Order #${req.params.id} does not exist!`
+                        }
+                      });
+                    } //Else bracket ends here for the SEcond Data helper if no err and no repsonse.
+                  }); //bracket closes for the SECOND DATAHELPER CALL in CREATING ORDER
           }
         });
       }
