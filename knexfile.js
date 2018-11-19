@@ -1,5 +1,5 @@
 // This is commented out when pushing to heroku. If there's an error on your local machine try uncommenting this out.
-require('dotenv').config();
+// require('dotenv').config();
 
 module.exports = {
 
