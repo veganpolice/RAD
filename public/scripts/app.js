@@ -119,8 +119,8 @@ $(() => {
             .animate({
             'top': cart.offset().top + 10,
             'left': cart.offset().left + 10,
-                'width': 25,
-                'height': 50
+                'width': 30,
+                'height': 40
         }, 1000, 'easeOutExpo');
 
         function shake(div) {
