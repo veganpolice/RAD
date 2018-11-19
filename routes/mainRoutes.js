@@ -252,34 +252,43 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
 
                             smoothiesWithQuantities.forEach((smoothie) => {
 
-                              console.log(smoothie.hasOwnProperty('quantity'))
-                              console.log(smoothie)
-
                               if (smoothie.hasOwnProperty('quantity')) {
                                 orderText.push(`${smoothie.description} x ${smoothie.quantity}`)
                               }
                             })
 
-                            const joinedOrderText = orderText.join(', ')
-
-                            //(restaurantPhone, customerPhone, orderId, order, defaultTime, callback)
-                            TextEngine.textBot(process.env.TWILIO_TO_NUMBER, phoneNumber, id, joinedOrderText, 5, (error, textId) => {
-                              if (error) {
-                                res.render('cart', {
+                            //get order details for name
+                            OrderHelpers.getOrderDetails(id, (err, res) => {
+                              if (err) {
+                                res.render("cart", {
                                   error: {
-                                    message: `Whoops! Something went wrong sending your text to the restaurant: ${error}`
-                                  },
+                                    message: `Whoops! Something went wrong, ${err}.`
+                                  }
                                 });
-                              } else {
-                                console.log(`Text Sent! ${textId}`);
-                                res.clearCookie('cart');
-                                console.log(response)
-                                console.log(response.toString())
-                                res.redirect(`/orders/${id}`);
-                              }
-                            }); // end of textEngine.textbot
+                              } else if(response){
+                                console.log('GET ORDER DETAILS', res);
+                                orderText.unshift(res.first_name);
+                                const joinedOrderText = orderText.join(', ')
+                                console.log(joinedOrderText);
 
-          
+                                //(restaurantPhone, customerPhone, orderId, order, defaultTime, callback)
+                                TextEngine.textBot(process.env.TWILIO_TO_NUMBER, phoneNumber, id, joinedOrderText, 5, (error, textId) => {
+                                  if (error) {
+                                    res.render('cart', {
+                                      error: {
+                                        message: `Whoops! Something went wrong sending your text to the restaurant: ${error}`
+                                      },
+                                    });
+                                  } else {
+                                    console.log(`Text Sent! ${textId}`);
+                                    res.clearCookie('cart');
+                                    console.log(response)
+                                    console.log(response.toString())
+                                    res.redirect(`/orders/${id}`);
+                                  }
+                                }); // end of textEngine.textbot
+                              }
+                            })//end of getOrderDetails
                           } //brack ends for IF of response of third datahelper
                           else {
                             console.log('neither err nor response from second call');
