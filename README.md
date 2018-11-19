@@ -5,7 +5,7 @@
 ## Description
 For our Midterm Group Project, we've chosen to go with the Food Pick-up Ordering option. RAD is a smoothie pick-up mobile first full stack appplication. Thirsty clients can visit our smoothie store and place an order. Using Twilio's API, customers will receive an SMS notification confirming their order and also a notification when their order is ready.
 
-## Our stack: 
+## Our stack:
 - Node
 - Express
 - jQuery
@@ -17,12 +17,12 @@ For our Midterm Group Project, we've chosen to go with the Food Pick-up Ordering
 - git
 - Heroku
 
-## Final Product
-!["About me page (pt.1)"](link)
-!["Menu page"](link)
-!["Cart page"](link)
-!["Checkout modal"](link)
-!["Confirmation page"](link)
+## Final Product 
+!["About me page (pt.1)"](https://github.com/aaronrbg/RAD/blob/master/screenshots/radsmoothies%20homepage.png)
+!["Menu page"](https://github.com/aaronrbg/RAD/blob/master/screenshots/menu.png)
+!["Cart page"](https://github.com/aaronrbg/RAD/blob/master/screenshots/cart.png)
+!["Checkout modal"](https://github.com/aaronrbg/RAD/blob/master/screenshots/checkout-modal.png)
+!["Confirmation page"](https://github.com/aaronrbg/RAD/blob/master/screenshots/order-confirmation.png)
 
 ## Getting Started in Dev Mode
 
