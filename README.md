@@ -1,5 +1,5 @@
 # RAD
-*R*achel, *A*aron and *D*avid's project
+**R**achel, **A**aron and **D**avid's project
 
 
 For our Midterm Group Project, we've chosen to go with the Food Pick-up Ordering option. RAD is a smoothie pick-up mobile first full stack appplication. Thirsty clients can visit our smoothie store and place an order. Using Twilio's API, customers will receive an SMS notification confirming their order and also a notification when their order is ready. 
