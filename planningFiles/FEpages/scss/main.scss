@@ -100,7 +100,6 @@ p.about-us {
 }
 
 .card-img-top {
-  width: 5em;
   align-self: center;
   border-top-left-radius: calc(.25rem - 1px);
   border-top-right-radius: calc(.25rem - 1px);
@@ -142,7 +141,7 @@ p.about-us {
 
 img.item-image {
   padding: 0.5em;
-  width: 5em;
+  width: 15em;
   margin-top: 15px;
 }
 
@@ -152,7 +151,7 @@ img.item-image {
 }
 
 .price {
-  margin-left: 2em;
+  margin-right: 0em;
 }
 
 .col-xs-12 {
@@ -196,11 +195,16 @@ img.item-image {
 @media all {
   span.quantity {
   font-size: 1.2em;
+  display: inline-flex;
   }
 }
 
+@media  {
+// need to change img size for the phone 
+}
 span.smoothie-quantity {
   margin: 0px 4px;
+  align-self: center;
 }
 
 .btn-outline-secondary {

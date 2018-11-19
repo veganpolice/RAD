@@ -67,7 +67,6 @@ p.about-us {
   opacity: 0.7; }
 
 .card-img-top {
-  width: 5em;
   align-self: center;
   border-top-left-radius: calc(.25rem - 1px);
   border-top-right-radius: calc(.25rem - 1px); }
@@ -101,7 +100,7 @@ p.about-us {
 
 img.item-image {
   padding: 0.5em;
-  width: 5em;
+  width: 15em;
   margin-top: 15px; }
 
 .row {
@@ -109,7 +108,7 @@ img.item-image {
   border-bottom: 0.5px solid #e9ecef; }
 
 .price {
-  margin-left: 2em; }
+  margin-right: 0em; }
 
 .col-xs-12 {
   width: 100%;
@@ -142,10 +141,12 @@ img.item-image {
 
 @media all {
   span.quantity {
-    font-size: 1.2em; } }
+    font-size: 1.2em;
+    display: inline-flex; } }
 
 span.smoothie-quantity {
-  margin: 0px 4px; }
+  margin: 0px 4px;
+  align-self: center; }
 
 .btn-outline-secondary {
   border-color: #e9ecef; }
