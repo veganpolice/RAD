@@ -15,7 +15,7 @@ exports.seed = function(knex, Promise) {
           // id: 3,
           description: 'RAD Rainbow',
           price_cents: 2531,
-          picture_url: 'https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/rainbow2.png',
+          picture_url: 'https://s3.ca-central-1.amazonaws.com/rad-lighthouselabs/rainbow3.png',
           default_time: '300000'
         }),
         knex.into('smoothies').insert({
