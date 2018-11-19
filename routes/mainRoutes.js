@@ -1,5 +1,5 @@
 "use strict";
-require('dotenv').config();
+// require('dotenv').config();
 const express = require('express');
 
 const router = express.Router();
@@ -222,7 +222,6 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
               }
             });
           } else {
-<<<<<<< HEAD
               
               //CREATING new ORDER and SMOOTHIE object to pass to textbot for sending to restaurant
               const id = response;
@@ -301,24 +300,6 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
                       });
                     } //Else bracket ends here for the SEcond Data helper if no err and no repsonse.
                   }); //bracket closes for the SECOND DATAHELPER CALL in CREATING ORDER
-=======
-            // (restaurantPhone, customerPhone, orderId, order, defaultTime, callback)
-            TextEngine.textBot('+14315575235', phoneNumber, response,
-              'SOMETHING NEW'
-            , 5, (error, textId) => {
-              if (error) {
-                res.render('cart', {
-                  error: {
-                    message: `Whoops! Something went wrong sending your text to the restaurant: ${error}`
-                  },
-                });
-              } else {
-                console.log(`Text Sent! ${textId}`);
-                res.clearCookie('cart');
-                res.redirect(`/orders/${response}`);
-              }
-            });
->>>>>>> master
           }
         });
       }
