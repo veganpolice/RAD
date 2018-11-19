@@ -37,13 +37,13 @@ module.exports = (TextEngine, OrderHelpers) => {
       });
   });
 
-  router.post('/receiveText', (req, res) => {
+  router.post('/getOrderDetails', (req, res) => {
     const orderId = Number(req.body.order);
-    OrderHelpers.getOrderById(orderId, (err, results) => {
+    OrderHelpers.getOrderDetails(orderId, (err, results) => {
       if (err) {
         res.status(500).send(err);
       } else {
-        res.send(results[0]);
+        res.send(results);
       }
     });
   });
