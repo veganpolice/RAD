@@ -1,11 +1,7 @@
 $main-font: 'Amatic SC', cursive;
-// $second-font:'Rubik', sans-serif;
-// $second-font:'Open Sans Condensed', sans-serif;
 $second-font: 'Quicksand', sans-serif;
-$second-color: #a1d0e2; // light blue
 $third-color: #e9ecef; // light grey
 $default-color: white;
-$test-color: red;
 
 .title:hover {
   text-decoration: none;
@@ -15,7 +11,6 @@ $test-color: red;
 
 .title {
   color: black;
-  // font-weight: bold;
   font-size: 2em;
 }
 
@@ -39,7 +34,6 @@ body {
   .card {
     padding: 1em;
   }
-
 }
 
 .nav {
@@ -174,13 +168,6 @@ img.item-image {
   position: relative;
 }
 
-
-
-// .order-row-custom{
-//   width: 100%;
-//   text-align: center;
-// }
-//
 .order-row-left{
   width: 33.333%;
   text-align: left;
@@ -195,10 +182,6 @@ img.item-image {
   text-align: center;
 
 }
-//
-// .order-row-no-flex {
-//   display: block;
-// }
 
 .checkout-btn {
   border-radius: 0px;
@@ -217,11 +200,8 @@ img.item-image {
   margin-right: 0.5em;
   .total {
     font-weight: bold;
-    padding: 0.5em 0em;
+    padding: 0.5em 1em;
   }
-  // .subtotal {
-  //   padding: 0.2em 0em;
-  // }
 }
 
 span.qty-label {
@@ -261,8 +241,8 @@ span.smoothie-quantity {
 }
 
 input.btn.btn-primary {
-  background-color:$second-color;
-  border: solid $second-color;
+  background-color:$third-color;
+  border: solid $third-color;
 }
 
 button.checkout-btn.btn.fixed-bottom.btn-lg.btn-block {
@@ -288,4 +268,20 @@ button.checkout-btn.btn.fixed-bottom.btn-lg.btn-block {
   h3.confirmation-info {
     padding: 1em 0em;
   }
+}
+
+.row.order-row-no-flex {
+  flex-wrap: wrap;
+  padding: 0em 1em;
+}
+
+.cart-labels-order {
+  border-bottom: 0.5px solid #e9ecef;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  height: 24px;
+  position: relative;
+  justify-content: space-around;
+  padding: 0em 1em;
 }
