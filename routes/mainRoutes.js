@@ -1,5 +1,5 @@
 "use strict";
-
+require('dotenv').config();
 const express = require('express');
 
 const router = express.Router();
@@ -60,9 +60,7 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
   });
 
   router.get("/orders/:id/", (req, res) => {
-
     const id = req.params.id;
-
     OrderHelpers.getOrderDetails(id, (err, response) => {
       if (err) {
         res.render("cart", {
@@ -71,51 +69,95 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
           }
         });
       }
-      if (response) {
+      else if (response) {
         console.log('response from getOrderById', response);
         const order = response;
         const smoothieOrderArray = response.smoothie_ids;
         console.log(smoothieOrderArray)
-        const orderedSmoothies = {};
-
+        //If Every thing goes fine, the second call should be made
+        //SECOND CALL TO THE DATA HELPER STARTS HERE
         SmoothieHelpers.getSmoothieByArrayOfId(smoothieOrderArray, (err, response) => {
+          console.log('second call triggered');
           if (err) {
+            console.log('error in second call')
             res.render("cart", {
               error: {
                 message: `Whoops! Something went wrong on our end.`
               }
             });
-          }
-          if (response) {
-            console.log('result from get SmoothieByArray:', response)
+          } else if(response){
+              const smoothiesInOrder = response;
+              console.log('response from second call', response)
+              console.log('id: ', id);
 
-            const templateVars = {
-              order: order,
-              id: id,
-              smoothies: response
-            }
+              OrderHelpers.getCookieByOrderId(id, (err, response) => {
+                console.log('third call triggered')
+                if (err) {
+                  console.log('error in third call')
+                  res.render("cart", {
+                    error: {
+                      message: `Whoops! Something went wrong on our end.`
+                    }
+                  });
+                } else if(response){
+                  console.log('third call response, ', response)
+                  const cookieSmoothies = response;
 
-            console.log('templateVars', templateVars)
+                  const smoothies = addQuantityToSmoothies(cookieSmoothies, smoothiesInOrder);
 
+                  const templateVars = {
+                    order: order,
+                    id: id,
+                    smoothies: smoothies,
+                  }
 
+                  console.log('templateVars', templateVars);
+                  res.render("order", templateVars);
 
-            res.render("order", templateVars);
-          } else {
-            res.render("cart", {
+                } //brack ends for IF of response of third datahelper
+                else {
+                  console.log('neither err nor response from second call');
+                  res.render("smoothies", {
+                    error: {
+                      message: `Order #${req.params.id} does not exist!`
+                    }
+                  })
+                }
+              }) //bracket closes for third datahelper GETCOOKIE by ID
+          } //Bracket closes for the IF (RESPONSE) in the second datahelper call
+          else {
+            console.log('neither err nor response from second call');
+            res.render("smoothies", {
               error: {
                 message: `Order #${req.params.id} does not exist!`
               }
             });
-          }
-        });
+          } //Else bracket ends here for the SEcond Data helper if no err and no repsonse.
+        }); //bracket closes for the SECOND DATAHELPER CALL
+      } else{
+          console.log('neither err nor response from second call');
+          res.render("smoothies", {
+              error: {
+                message: `Order #${req.params.id} does not exist!`
+              }
+          }) //res.render error
+        } //else bracket for the main DataHelperCall
+    });//orderHelper Call bracket ends here.
+  }); //router.get orders/:id bracket ends here.
 
 
-          }
-        })
-
-
-  });
-
+  // helper function to add quant to smoothies -- this can be moved
+  const addQuantityToSmoothies = function (cookieSmoothies, smoothiesInOrder) {
+    let smoothiesWithQuantities = smoothiesInOrder;
+    for(const smoothieId in cookieSmoothies) {
+      smoothiesWithQuantities.forEach((smoothie) => {
+        if (smoothieId == smoothie.id) {
+            smoothie.quantity = cookieSmoothies[smoothieId];
+        }
+      })
+    }
+    return smoothiesWithQuantities;
+  } // end of helper function
 
   router.get("/orders", (req, res) => {
 
@@ -176,26 +218,88 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
           if (err) {
             res.render('cart', {
               error: {
-                message: `Whoops! Something went wrong on our end.`
+                message: `5Whoops! Something went wrong on our end.`
               }
             });
           } else {
-            // (restaurantPhone, customerPhone, orderId, order, defaultTime, callback)
-            TextEngine.textBot('+14315575235', phoneNumber, response, {
-              order
-            }, 5, (error, textId) => {
-              if (error) {
-                res.render('cart', {
-                  error: {
-                    message: `Whoops! Something went wrong sending your text to the restaurant: ${error}`
-                  },
-                });
-              } else {
-                console.log(`Text Sent! ${textId}`);
-                res.clearCookie('cart');
-                res.redirect(`/orders/${response}`);
-              }
-            });
+              
+              //CREATING new ORDER and SMOOTHIE object to pass to textbot for sending to restaurant
+              const id = response;
+                  SmoothieHelpers.getSmoothies((err, response) => {
+                    if (err) {
+                      res.render("cart", {
+                        error: {
+                          message: `Whoops! Something went wrong, ${err}.`
+                        }
+                      });
+                    } else if(response){
+                        const smoothies = response;          
+                        OrderHelpers.getCookieByOrderId(id, (err, response) => {
+                          if (err) {
+                            res.render("cart", {
+                              error: {
+                                message: `Whoops! Something went wrong, ${err}.`
+                              }
+                            });
+                          } else if(response){
+                            const cookieSmoothies = response;
+                            const smoothiesWithQuantities = addQuantityToSmoothies(cookieSmoothies, smoothies);
+              
+                            //console.log('smoothies withQ', smoothiesWithQuantities);
+                            
+                            let orderText = []
+                            //console.log(smoothiesWithQuantities)
+
+                            smoothiesWithQuantities.forEach((smoothie) => {
+
+                              console.log(smoothie.hasOwnProperty('quantity'))
+                              console.log(smoothie)
+
+                              if (smoothie.hasOwnProperty('quantity')) {
+                                orderText.push(`${smoothie.description} x ${smoothie.quantity}`)
+                              }
+                            })
+
+                            const joinedOrderText = orderText.join(', ')
+
+                            //(restaurantPhone, customerPhone, orderId, order, defaultTime, callback)
+                            TextEngine.textBot(process.env.TWILIO_TO_NUMBER, phoneNumber, id, joinedOrderText, 5, (error, textId) => {
+                              if (error) {
+                                res.render('cart', {
+                                  error: {
+                                    message: `Whoops! Something went wrong sending your text to the restaurant: ${error}`
+                                  },
+                                });
+                              } else {
+                                console.log(`Text Sent! ${textId}`);
+                                res.clearCookie('cart');
+                                console.log(response)
+                                console.log(response.toString())
+                                res.redirect(`/orders/${id}`);
+                              }
+                            }); // end of textEngine.textbot
+
+          
+                          } //brack ends for IF of response of third datahelper
+                          else {
+                            console.log('neither err nor response from second call');
+                            res.render("smoothies", {
+                              error: {
+                                message: `Order #${req.params.id} does not exist!`
+                              }
+                            })
+                          }
+                        }) //bracket closes for third datahelper GETCOOKIE by ID
+                    } //Bracket closes for the IF (RESPONSE) in the second datahelper call
+                    else {
+                      console.log('neither err nor response from second call');
+                      res.render("smoothies", {
+                        error: {
+                          message: `Order #${req.params.id} does not exist!`
+                        }
+                      });
+                    } //Else bracket ends here for the SEcond Data helper if no err and no repsonse.
+                  }); //bracket closes for the SECOND DATAHELPER CALL in CREATING ORDER
           }
         });
       }

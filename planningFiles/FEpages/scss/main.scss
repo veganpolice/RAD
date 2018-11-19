@@ -27,7 +27,7 @@ $test-color: red;
 
 body {
   font: 100% $second-font;
-  background-color: $default-color; 
+  background-color: $default-color;
   font-size: 1em;
 
   .body-container {
@@ -162,11 +162,31 @@ img.item-image {
   position: relative;
 }
 
-.description {
-  position: absolute;
-  top: 0px;
-  left: 7px;
+
+
+// .order-row-custom{
+//   width: 100%;
+//   text-align: center;
+// }
+//
+.order-row-left{
+  width: 33.333%;
+  text-align: left;
 }
+.order-row-right{
+  width: 33.333%;
+  text-align: right;
+}
+
+.order-row-center{
+  width: 33.333%;
+  text-align: center;
+
+}
+//
+// .order-row-no-flex {
+//   display: block;
+// }
 
 .checkout-btn {
   border-radius: 0px;
