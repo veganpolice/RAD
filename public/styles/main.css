@@ -156,7 +156,7 @@ img.item-image {
   margin-right: 0.5em; }
   .total-table .total {
     font-weight: bold;
-    padding: 0.5em 0em; }
+    padding: 0.5em 1em; }
 
 span.qty-label {
   position: absolute;
@@ -187,8 +187,8 @@ span.smoothie-quantity {
   border-color: #e9ecef; }
 
 input.btn.btn-primary {
-  background-color: #a1d0e2;
-  border: solid #a1d0e2; }
+  background-color: #e9ecef;
+  border: solid #e9ecef; }
 
 button.checkout-btn.btn.fixed-bottom.btn-lg.btn-block {
   position: sticky;
@@ -204,3 +204,17 @@ button.checkout-btn.btn.fixed-bottom.btn-lg.btn-block {
     font-size: 4em; }
   .order-confirmation-page h3.confirmation-info {
     padding: 1em 0em; }
+
+.row.order-row-no-flex {
+  flex-wrap: wrap;
+  padding: 0em 1em; }
+
+.cart-labels-order {
+  border-bottom: 0.5px solid #e9ecef;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  height: 24px;
+  position: relative;
+  justify-content: space-around;
+  padding: 0em 1em; }
