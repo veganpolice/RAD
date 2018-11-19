@@ -27,7 +27,7 @@ $test-color: red;
 
 body {
   font: 100% $second-font;
-  background-color: $default-color; 
+  background-color: $default-color;
   font-size: 1em;
 
   .body-container {
@@ -161,12 +161,6 @@ img.item-image {
   align-items: center;
   justify-content: space-between;
   position: relative;
-}
-
-.description {
-  position: absolute;
-  top: 0px;
-  left: 7px;
 }
 
 .checkout-btn {

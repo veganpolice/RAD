@@ -118,11 +118,6 @@ img.item-image {
   justify-content: space-between;
   position: relative; }
 
-.description {
-  position: absolute;
-  top: 0px;
-  left: 7px; }
-
 .checkout-btn {
   border-radius: 0px;
   border: 1px solid #e9ecef;

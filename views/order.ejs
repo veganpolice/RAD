@@ -10,13 +10,12 @@
           <% } else { %> <font color='orange'>pending</font></h2>
         <p class="confirmation-info">Please wait while we confirm your order.</p>
           <% } %>
-       
 
-      
+
+
 
         <div class="cart-labels">
             <span class="item-label">ITEM</span>
-            <span> </span>
             <span class="qty-label">QTY</span>
             <span class="price-label">PRICE</span>
           </div>
@@ -25,22 +24,24 @@
         <% smoothies.forEach((smoothie) => { %>
           <div class="row">
             <div class="col-xs-12">
-              <span class='description'> 
+              <span class='description'>
                 <%=smoothie.description %>
-                </span> 
+                </span>
               <span>
                 <%= smoothie.quantity %></span>
                 <span class='price'>
                   <%= new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'USD' }).format(smoothie.quantity * (smoothie.price_cents / 100))%></span>
             </div>
-            
+
           </div>
           <% });%>
-          
+
           <div class="total-table"><div class="total"><span>Total: </span><span class="total-price">$0.00</span></div></div>
-  
-            
-          
+
+
+
         </div>
       </div>
     </div>
+
+    <% include ./_footerpartial %>
