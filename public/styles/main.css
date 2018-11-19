@@ -69,7 +69,8 @@ p.about-us {
 .card-img-top {
   align-self: center;
   border-top-left-radius: calc(.25rem - 1px);
-  border-top-right-radius: calc(.25rem - 1px); }
+  border-top-right-radius: calc(.25rem - 1px);
+  width: 17em; }
 
 .add-item-btn {
   width: 100%;
@@ -100,7 +101,7 @@ p.about-us {
 
 img.item-image {
   padding: 0.5em;
-  width: 15em;
+  width: 10em;
   margin-top: 15px; }
 
 .description {
