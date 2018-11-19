@@ -87,17 +87,20 @@ p.about-us {
 
 .cart-labels {
   border-bottom: 0.5px solid #e9ecef;
-  padding: 0.5em 0em;
-  font-size: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: space-between; }
+  width: 100%;
+  text-align: center; }
 
 .price-label {
-  margin-right: 0.5em; }
+  margin-right: 0.5em;
+  float: right;
+  text-align: right;
+  width: 33%; }
 
 .item-label {
-  margin-left: 1em; }
+  margin-left: 1em;
+  float: left;
+  width: 33%;
+  text-align: left; }
 
 img.item-image {
   padding: 0.5em;
