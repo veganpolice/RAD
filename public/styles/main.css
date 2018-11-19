@@ -103,6 +103,11 @@ img.item-image {
   width: 15em;
   margin-top: 15px; }
 
+.description {
+  position: absolute;
+  top: 0px;
+  left: 7px; }
+
 .row {
   margin: 0.5em;
   border-bottom: 0.5px solid #e9ecef; }

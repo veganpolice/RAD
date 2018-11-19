@@ -145,6 +145,11 @@ img.item-image {
   margin-top: 15px;
 }
 
+.description {
+  position: absolute;
+  top: 0px;
+  left: 7px;
+}
 .row {
   margin: 0.5em;
   border-bottom: 0.5px solid $third-color;
@@ -219,9 +224,9 @@ img.item-image {
   }
 }
 
-@media  {
-// need to change img size for the phone 
-}
+// @media  {
+// // need to change img size for the phone 
+// }
 span.smoothie-quantity {
   margin: 0px 4px;
   align-self: center;
