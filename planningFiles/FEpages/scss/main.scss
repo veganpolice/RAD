@@ -163,6 +163,32 @@ img.item-image {
   position: relative;
 }
 
+
+
+// .order-row-custom{
+//   width: 100%;
+//   text-align: center;
+// }
+//
+.order-row-left{
+  width: 33.333%;
+  text-align: left;
+}
+.order-row-right{
+  width: 33.333%;
+  text-align: right;
+}
+
+.order-row-center{
+  width: 33.333%;
+  text-align: center;
+
+}
+//
+// .order-row-no-flex {
+//   display: block;
+// }
+
 .checkout-btn {
   border-radius: 0px;
   border: 1px solid $third-color;

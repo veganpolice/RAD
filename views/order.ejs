@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <% include ./_headpartial %>
-  </head>
-  <div class="order-confirmation-page">
-        <h1 class="confirmation-info">Your RAD Order</h1>
-        <h2 class="confirmation-info">status: <% if (order.confirmed) { %> <font color='green'>confirmed</font></h2>
-        <p class="confirmation-info">your order will be ready at <%= order.ready_at%></p>
-          <% } else { %> <font color='orange'>pending</font></h2>
-        <p class="confirmation-info">Please wait while we confirm your order.</p>
-          <% } %>
 
-
-
-
-        <div class="cart-labels">
-            <span class="item-label">ITEM</span>
-            <span class="qty-label">QTY</span>
-            <span class="price-label">PRICE</span>
-          </div>
-
-
-        <% smoothies.forEach((smoothie) => { %>
-          <div class="row">
-            <div class="col-xs-12">
-              <span class='description'>
-                <%=smoothie.description %>
-                </span>
-              <span>
-                <%= smoothie.quantity %></span>
-                <span class='price'>
-                  <%= new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'USD' }).format(smoothie.quantity * (smoothie.price_cents / 100))%></span>
-            </div>
-
-          </div>
-          <% });%>
-
-          <div class="total-table"><div class="total"><span>Total: </span><span class="total-price">$0.00</span></div></div>
-
-
-
-        </div>
-      </div>
+<head>
+  <% include ./_headpartial %>
+</head>
+<div class="order-confirmation-page">
+  <h1 class="confirmation-info">Your RAD Order</h1>
+  <p class="confirmation-info mb-1">
+    Order #
+    <%=id%>
+  </p>
+  <h2 class="confirmation-info">status:
+    <% if (order.confirmed) { %>
+    <font color='green'>confirmed</font>
+  </h2>
+  <p class="confirmation-info">your order will be ready at
+    <%= order.ready_at%>
+  </p>
+  <% } else { %>
+  <font color='orange'>pending</font>
+  </h2>
+  <p class="confirmation-info">Please wait while we confirm your order.</p>
+  <% } %>
+  <div class="cart-labels">
+    <span class="order-row-left ml-2">ITEM</span>
+    <span class="order-row-center pr-4">QTY</span>
+    <span class="order-row-right mr-2">PRICE</span>
+  </div>
+  <% smoothies.forEach((smoothie) => { %>
+  <div class="row order-row-no-flex">
+    <div class="col-xs-12 order-row-custom">
+      <span class='description order-row-left'>
+        <%=smoothie.description %></span>
+      <span class='order-row-center'><%= smoothie.quantity %></span>
+      <span class='price order-row-right'><%= new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'USD' }).format(smoothie.quantity * (smoothie.price_cents / 100))%></span>
     </div>
+  </div>
+  <% });%>
+  <div class="total-table">
+    <div class="total"><span>Total: </span><span class="total-price">$0.00</span></div>
+  </div>
+</div>
+</div>
+</div>
 
-    <% include ./_footerpartial %>
+<% include ./_footerpartial %>

@@ -63,7 +63,6 @@ module.exports = (SmoothieHelpers, OrderHelpers, TextEngine) => {
     const id = req.params.id;
     OrderHelpers.getOrderDetails(id, (err, response) => {
       if (err) {
-        console.log('this block getting run')
         res.render("cart", {
           error: {
             message: `Whoops! Something went wrong on our end.`

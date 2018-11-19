@@ -118,6 +118,18 @@ img.item-image {
   justify-content: space-between;
   position: relative; }
 
+.order-row-left {
+  width: 33.333%;
+  text-align: left; }
+
+.order-row-right {
+  width: 33.333%;
+  text-align: right; }
+
+.order-row-center {
+  width: 33.333%;
+  text-align: center; }
+
 .checkout-btn {
   border-radius: 0px;
   border: 1px solid #e9ecef;
