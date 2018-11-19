@@ -125,13 +125,11 @@ p.about-us {
 }
 .cart-labels {
   border-bottom: 0.5px solid $third-color;
-  // padding: 0.5em 0em;
-  // font-size: 1em;
-  // display: flex;
-  // align-items: center;
-  // justify-content: space-between;
   width: 100%;
   text-align:center;
+  display: block;
+  height: 24px;
+  position: relative;
 }
 
 .price-label {
@@ -226,13 +224,27 @@ img.item-image {
   // }
 }
 
+span.qty-label {
+  position: absolute;
+  right: 27vw;
+}
+
 @media all {
   span.quantity {
   font-size: 1.2em;
-  display: inline-flex;
+  position: absolute;
+  right: 24.3vw;
   }
 }
 
+@media (max-width:320px) {
+  img.item-image {
+    width: 7em;
+  }
+  span.qty-label {
+    right: 32vw;
+}
+}
 span.smoothie-quantity {
   margin: 0px 4px;
   align-self: center;

@@ -22,8 +22,7 @@
         <div class="col-xs-12">
           <img class="item-image" src="<%=smoothie.picture_url %>" class="rounded float-left" alt="<%=smoothie.description %>">
           <div class='description'> <%=smoothie.description %></div>
-          <span class="quantity"><button class="decrease-quantity btn btn-outline-secondary btn-sm" data-smoothieid="<%= smoothie.id%>"> - </button><span class="smoothie-quantity">
-              <%=cart[smoothie.id] %> </span><button class="increase-quantity btn btn-outline-secondary btn-sm" data-smoothieid="<%= smoothie.id%>">+</button></span>
+          <span class="quantity"><button class="decrease-quantity btn btn-outline-secondary btn-sm" data-smoothieid="<%= smoothie.id%>"> - </button><span class="smoothie-quantity"><%=cart[smoothie.id] %></span><button class="increase-quantity btn btn-outline-secondary btn-sm" data-smoothieid="<%= smoothie.id%>">+</button></span>
             <span class='price'><%= new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'USD' }).format(cart[smoothie.id] * (smoothie.price_cents / 100))%></span>
         </div>
       </div>
