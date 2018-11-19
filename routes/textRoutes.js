@@ -37,6 +37,17 @@ module.exports = (TextEngine, OrderHelpers) => {
       });
   });
 
+  router.post('/receiveText', (req, res) => {
+    const orderId = Number(req.body.order);
+    OrderHelpers.getOrderById(orderId, (err, results) => {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(results[0]);
+      }
+    });
+  });
+
 
   return router;
 };
