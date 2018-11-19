@@ -30,7 +30,7 @@
   <% smoothies.forEach((smoothie) => { %>
   <div class="row order-row-no-flex">
     <div class="col-xs-12 order-row-custom">
-      <span class='description order-row-left'>
+      <span class='order-row-left'>
         <%=smoothie.description %></span>
       <span class='order-row-center'><%= smoothie.quantity %></span>
       <span class='price order-row-right'><%= new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'USD' }).format(smoothie.quantity * (smoothie.price_cents / 100))%></span>
