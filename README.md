@@ -1,10 +1,11 @@
-# RAD
+# RAD Smoothies
 ## Authors
-**R**achel, **A**aron and **D**avid's project
 
 * Rachel [@rachwongrw](https://github.com/rachwongrw/)
 * Aaron [@aaronrbg](https://github.com/aaronrbg/)
 * David [@fiveache](https://github.com/fiveache/)
+
+**RAD** is an acronym of **R**achel, **A**aron and **D**avid
 
 ## Description
 For our Midterm Group Project, we've chosen to go with the Food Pick-up Ordering option. RAD is a smoothie pick-up mobile first full stack application. Thirsty clients can visit our smoothie store and place an order. Using Twilio's API, customers will receive an SMS notification confirming their order and also a notification when their order is ready.
