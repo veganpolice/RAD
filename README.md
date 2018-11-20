@@ -8,7 +8,9 @@
 **RAD** is an acronym of **R**achel, **A**aron and **D**avid
 
 ## Description
-For our Midterm Group Project, we've chosen to go with the Food Pick-up Ordering option. RAD is a smoothie pick-up mobile first full stack application. Thirsty clients can visit our smoothie store and place an order. Using Twilio's API, customers will receive an SMS notification confirming their order and also a notification when their order is ready.
+RAD Smoothies was built for a midterm full-stack group project. We chose to build a food pick-up ordering interface for a smoothie shop. RAD Smoothies is mobile-first in its design. Thirsty clients can visit our smoothie store and place an order. RAD smoothies communicates with [Twilio](https://www.twilio.com/)'s REST API. Our customers interact with the web app, whereas the restaurant interface strictly through SMS.
+
+We built a chatbot around researched user stories and prototyped user and restaurant interactions using SMS as an interface (a tech both end-users have). Our chatbot is built to communicate with RAD Smoothie's POST routes in order to retrieve order data from a psql database and serve them back to [Twilio](https://www.twilio.com/)’s REST API. tl;dr it is returning some feedback to the user and restaurant based on parsed JSON data.
 
 ## Tech Stack:
 - Node
@@ -21,6 +23,9 @@ For our Midterm Group Project, we've chosen to go with the Food Pick-up Ordering
 - Knex.js
 - git
 - Heroku
+
+## API's
+- [Twilio](https://www.twilio.com/)
 
 ## Screenshots
 !["About me page (pt.1)"](https://github.com/aaronrbg/RAD/blob/master/screenshots/radsmoothies%20homepage.png)
