@@ -24,7 +24,7 @@ We built a chatbot around researched user stories and prototyped user and restau
 - git
 - Heroku
 
-## API's
+## APIs
 - [Twilio](https://www.twilio.com/)
 
 ## Screenshots
