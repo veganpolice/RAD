@@ -1,6 +1,5 @@
 # RAD Smoothies
 
-See RAD smoothies live on [Heroku](http://radsmoothies.herokuapp.com).
 ## Authors
 
 * Rachel [@rachwongrw](https://github.com/rachwongrw/)
