@@ -46,7 +46,6 @@ We built a chatbot around researched user stories and prototyped user and restau
 4. Check .env_example and fill TWILIO fields with authentication keys from https://twilio.com
 5. Start the web server using the `npm run local` command
 5. Go to http://localhost:8080/ in your browser.
-6. Order a smoothie! 
 
 ## Dependencies
 
